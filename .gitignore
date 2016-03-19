@@ -1,0 +1,8 @@
+## @source: https://forum.ionicframework.com/t/whats-a-good-gitignore-for-an-ionic-project/4115/6
+
+node_modules/
+platforms/
+plugins/
+resources/
+www/lib
+
