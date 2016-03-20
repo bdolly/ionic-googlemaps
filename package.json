@@ -43,11 +43,17 @@
     "ios"
   ],
   "browser": {
-    "angular": "./www/lib/ionic/js/angular/angular.min.js",
-    "ionic": "./www/lib/ionic/js/ionic.min.js"
-  },
-  "browserify-shim": {
-    "angular": "angular",
-    "ionic": "ionic"
-  }
+    "ionic": "./www/lib/ionic/js/ionic.min.js",
+    "angular": "./www/lib/ionic-angular.min.js" 
+}, 
+"browserify": { 
+ "transform": [ 
+  "browserify-shim" 
+ ] 
+}, 
+"browserify-shim": { 
+ "angular": "angular", 
+ "ionic": "ionic" 
+}
+  
 }

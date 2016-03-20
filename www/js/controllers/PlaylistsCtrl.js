@@ -5,8 +5,9 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function PlaylistCtrl($scope) {
-  $scope.playlists = [
+function PlaylistsCtrl($scope) {
+  
+ $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
@@ -15,7 +16,6 @@ function PlaylistCtrl($scope) {
     { title: 'Cowbell', id: 6 }
   ];
 
-
 };
 
-controllersModule.controller('PlaylistCtrl', PlaylistCtrl);
+controllersModule.controller('PlaylistsCtrl', PlaylistsCtrl);

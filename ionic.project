@@ -1,5 +1,12 @@
 {
   "name": "ionic-googlemaps",
   "app_id": "",
-  "defaultBrowser": true
+  "defaultBrowser": true,
+  "gulpStartupTasks": [
+    "browserify"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

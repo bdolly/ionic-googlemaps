@@ -37,16 +37,16 @@ function buildScript(file) {
   // }
 
   var transforms = [
-    { 'name':babelify, 'options': {}},
-    { 'name':debowerify, 'options': {}},
+    // { 'name':babelify, 'options': {}},
+    // { 'name':debowerify, 'options': {}},
     { 'name':ngAnnotate, 'options': {}},
     { 'name':'brfs', 'options': {}},
     { 'name':'bulkify', 'options': {}},
   ];
 
-  // transforms.forEach(function(transform) {
-  //   bundler.transform(transform.name, transform.options);
-  // });
+  transforms.forEach(function(transform) {
+    bundler.transform(transform.name, transform.options);
+  });
 
   function rebundle() {
     var stream = bundler.bundle();

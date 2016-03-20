@@ -1,13 +1,13 @@
 'use strict';
 
 // require('angular');
-require('ionic');
+// require('ionic');
 
 // angular modules
 // require('angular-ui-router');
 // require('angular-module-sanitize');
 // require('./templates');
-// require('./controllers/_index');
+require('./controllers/_index');
 // require('./services/_index');
 // require('./components/_index');
 
@@ -16,8 +16,8 @@ angular.element(document).ready(function() {
 
   var requires = [
     'ionic',
-    // 'app.controllers'
-    // 'ui.router',
+    'app.controllers',
+    'ui.router'
     // 'templates',
     // 'ngSanitize',
     // 'app.services',
@@ -29,7 +29,7 @@ angular.element(document).ready(function() {
 
   // angular.module('app').constant('AppSettings', require('./constants.development'));
 
-  // angular.module('app').config(require('./on_config'));
+  angular.module('app').config(require('./on_config'));
 
   angular.module('app').run(require('./on_run'));
 
