@@ -25,7 +25,7 @@ module.exports = {
   },
 
   'browserify': {
-    'entry'   : './www/js/app.js',
+    'entry'   : './www/js/app-main.js',
     'bundleName': pgk.name+'.js',
     'prodSourcemap' : false
   },

@@ -16,9 +16,11 @@ var handleErrors = require('../util/handleErrors');
 var debowerify   = require('debowerify');
 var ngAnnotate   = require('browserify-ngannotate');
 
+
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
-  console.log(config.browserify.entry);
+  
+
   var bundler = browserify({
     entries:      config.browserify.entry,
     debug:        true,
@@ -27,24 +29,24 @@ function buildScript(file) {
     fullPaths:    !global.isProd
   });
 
-  if ( !global.isProd ) {
+  // if ( !global.isProd ) {
     bundler = watchify(bundler);
     bundler.on('update', function() {
       rebundle();
     });
-  }
+  // }
 
   var transforms = [
     { 'name':babelify, 'options': {}},
     { 'name':debowerify, 'options': {}},
     { 'name':ngAnnotate, 'options': {}},
     { 'name':'brfs', 'options': {}},
-    { 'name':'bulkify', 'options': {}}
+    { 'name':'bulkify', 'options': {}},
   ];
 
-  transforms.forEach(function(transform) {
-    bundler.transform(transform.name, transform.options);
-  });
+  // transforms.forEach(function(transform) {
+  //   bundler.transform(transform.name, transform.options);
+  // });
 
   function rebundle() {
     var stream = bundler.bundle();
