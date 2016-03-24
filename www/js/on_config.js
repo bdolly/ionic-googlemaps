@@ -7,7 +7,7 @@
 function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provide) {
   
   //activate LogDecorator
-  // require('./utils/logging/LogDecorator.js')($provide);
+  require('./utils/logging/LogDecorator.js')($provide);
 
 $stateProvider
 
