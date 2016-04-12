@@ -187,20 +187,17 @@ $stateProvider
   })
 
   .state('app.map', {
-      resolve:{
-        coords:function(CurrentCoords) {
-          return CurrentCoords.get();
-        }
-      },
+      // resolve:{
+      //   coords:function(CurrentCoords) {
+      //     return CurrentCoords.get();
+      //   }
+      // },
       url: '/map',
       views: {
         'menuContent': {
           templateUrl: 'templates/map.html',
           controller: 'MapCtrl as Map'
-        },
-        data:{
-          cords: "43.07493,-89.381388"  
-        },
+        }
       }
     })
     .state('app.playlists', {

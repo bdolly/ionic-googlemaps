@@ -8,5 +8,11 @@
   "watchPatterns": [
     "www/**/*",
     "!www/lib/**/*"
+  ],
+  "proxies": [
+    {
+      "path": "/api/v1/yokal/data/",
+      "proxyUrl": "http://yoendpoint4-wbbs.rhcloud.com/api/v1/yokal/data/"
+    }
   ]
 }
