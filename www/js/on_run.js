@@ -3,7 +3,9 @@
 /**
  * @ngInject
  */
-function OnRun($ionicPlatform) {
+function OnRun($ionicPlatform, $log) {
+  $log = $log.getInstance('OnRun');
+  
   $ionicPlatform.ready(function() {
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

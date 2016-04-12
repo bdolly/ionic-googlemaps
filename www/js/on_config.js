@@ -11,7 +11,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $provid
 
 $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -27,12 +27,21 @@ $stateProvider
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.map', {
+      resolve:{
+        coords:function(CurrentCoords) {
+          return CurrentCoords.get();
+        }
+      },
+      url: '/map',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+          templateUrl: 'templates/map.html',
+          controller: 'MapCtrl as Map'
+        },
+        data:{
+          cords: "43.07493,-89.381388"  
+        },
       }
     })
     .state('app.playlists', {
@@ -54,8 +63,10 @@ $stateProvider
       }
     }
   });
+
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/map');
   
   
 

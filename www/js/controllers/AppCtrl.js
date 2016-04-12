@@ -7,7 +7,7 @@ var controllersModule = require('./_index');
  */
 function AppCtrl($scope, $ionicModal, $timeout) {
   
-// Form data for the login modal
+  // Form data for the login modal
   $scope.loginData = {};
 
   // Create the login modal that we will use later
@@ -37,6 +37,8 @@ function AppCtrl($scope, $ionicModal, $timeout) {
       $scope.closeLogin();
     }, 1000);
   };
+
+  
 
 };
 
