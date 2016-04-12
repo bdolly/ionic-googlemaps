@@ -16,9 +16,9 @@ function MapCtrl($scope, $log, $state, $ionicLoading, coords, $timeout ) {
   	$log.debug('starting coords "{cords}"',vm);  	
   	      
     var mapOptions = {
-      center:            new google.maps.LatLng(coords.latitude+','+coords.longitude),
-      zoom:              16,
-      mapTypeId:         google.maps.MapTypeId.ROADMAP,
+      center:    new google.maps.LatLng(coords.latitude+','+coords.longitude),
+      zoom:      16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
 
     vm.gmap = new google.maps.Map(document.getElementById("Map"), mapOptions);

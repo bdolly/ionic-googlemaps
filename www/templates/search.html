@@ -1,5 +1,25 @@
 <ion-view view-title="Search">
   <ion-content>
     <h1>Search</h1>
+
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+	  <ion-slide ng-repeat="location in locations | orderBy:'distancefromlocation'">
+	    
+	    <div class="box card">
+		  <div class="item item-divider">{{location.name}} <i class="fa fa-{{location.category =='Food' ?'cutlery':''}}" aria-hidden="true"></i>
+</div>
+		  <div class="item item-text-wrap">
+		    <pre>{{location | json}}</pre>
+		  </div>
+		  <div class="item item-divider">
+		    <p>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</p>
+		  </div>
+		</div>
+
+	  </ion-slide>
+	</ion-slide-box>
+
+    
+
   </ion-content>
 </ion-view>
