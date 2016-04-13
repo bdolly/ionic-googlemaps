@@ -48,6 +48,7 @@ var enchanceLogger = function( $log ){
       var enhancedLogFn = function( ){
         var args = Array.prototype.slice.call(arguments),
             now  = DateTime.formattedNow();
+            className = className ? className : '';
             // prepend a timestamp to the original output message
             args[0] = supplant("{0} - {1}{2}", [ now, className, args[0] ]);
 

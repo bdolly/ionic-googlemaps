@@ -10,11 +10,11 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
   	var vm = this;
     vm.coordinates = {};	
   
-  	$log.debug('initMap');
-  	
+  	// $log.debug('initMap');
+  	$log = $log.getInstance("MapCtrl");
   	      
     var mapOptions = {
-      center:    {lat: 39.937893, lng:-75.1689347},
+      // center:    {lat: 39.937893, lng:-75.1689347},
       zoom:      1,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
@@ -26,7 +26,7 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
 
     
     CurrentCoords.get().then(function(pos){
-      // mapOptions.center = {lat: pos.latitude, lng: pos.longitude};
+      mapOptions.center = {lat: pos.latitude, lng: pos.longitude};
 
       vm.gmap = new google.maps.Map(document.getElementById("Map"), mapOptions);
 
@@ -38,8 +38,8 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
       
       $ionicLoading.hide();
     
-      // return Yocal.get({radius: 100000, lat:pos.latitude, lng:pos.longitude });
-      return Yocal.get({radius: 8000, lat:mapOptions.center.lat, lng:mapOptions.center.lng });
+      return Yocal.get({radius: 100000, lat:pos.latitude, lng:pos.longitude });
+      // return Yocal.get({radius: 8000, lat:mapOptions.center.lat, lng:mapOptions.center.lng });
     })
     .then(function(data){
 
@@ -92,7 +92,7 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
     
  
    
-};
+};//// MapCtrl
 
 
 controllersModule.controller('MapCtrl', MapCtrl);

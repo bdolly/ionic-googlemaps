@@ -6,22 +6,23 @@ var servicesModule = require('./_index.js');
  * @ngInject
  */
 function CurrentCoords($q, $http, $log,  AppSettings) {
-
+  $log = $log.getInstance("CurrentCoordsService");
+  
   var service = {};
 
   service.get = function() {
-    var deferred = $q.defer();
 
+    var deferred = $q.defer();    
 
     navigator.geolocation.getCurrentPosition(function(pos) {
         
-      $log.debug('current lat: "{coords.latitude}"',pos);
-      $log.debug('current long: "{coords.longitude}"',pos);
+      $log.debug('lat: {coords.latitude}',pos);
+      $log.debug('long: {coords.longitude}',pos);
 
       deferred.resolve(pos.coords);
         
    }, function(error) {
-       $log.error('Unable to get location: ' + error.message);
+       $log.warn('Unable to get location: ' + error.message);
        deferred.reject(err, status);
    });
 

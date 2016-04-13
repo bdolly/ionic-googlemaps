@@ -11,13 +11,14 @@
 		    <pre>{{location | json}}</pre>
 		  </div>
 		  <div class="item item-divider">
-		    <p>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</p>
+		  	<p>{{locatio.travelTime}}</br>
+		    <small>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</small></p>
 		  </div>
 		</div>
 
 	  </ion-slide>
-	</ion-slide-box> -->
-
+	</ion-slide-box> 
+ -->
 	
 	<ion-list ng-controller="SearchCtrl"
           show-delete="shouldShowDelete"
@@ -37,14 +38,11 @@
     		</p>
     		
     		<ion-option-button class="button-positive" ng-click="share(item)">Share</ion-option-button>
-
-    <ion-option-button class="button-info" ng-click="edit(item)"> Edit </ion-option-button>
-    <ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)"></ion-delete-button>
-    <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-    </ion-reorder-button>
-
-  </ion-item>
-</ion-list>
+    		<ion-option-button class="button-info" ng-click="edit(item)"> Edit </ion-option-button>
+    		<ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)"></ion-delete-button>
+    		<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+  		</ion-item>
+	</ion-list>
 
 	
   </ion-content>
