@@ -5,16 +5,20 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $timeout ) {
- 	// ViewModel
+function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, LocationsService ) {
+
+    $log = $log.getInstance("MapCtrl");
+
+ 	  // ViewModel
   	var vm = this;
     vm.coordinates = {};	
-  
-  	// $log.debug('initMap');
-  	$log = $log.getInstance("MapCtrl");
-  	      
+    vm.radius = AppSettings.GMAP_RADIUS;
+    $scope.CurrentCoords =  $rootScope.currentPosition;
+
+      
     var mapOptions = {
-      // center:    {lat: 39.937893, lng:-75.1689347},
+      center:    {lat: $scope.CurrentCoords.latitude, 
+                  lng: $scope.CurrentCoords.longitude},
       zoom:      1,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
@@ -24,34 +28,35 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
       backdrop: true
     });
 
+
+    vm.gmap = new google.maps.Map(document.getElementById("Map"), mapOptions);
+
+    // Drop pin on current location
+    // var youAreHere = new google.maps.Marker({
+    //     position: mapOptions.center,
+    //     map:      vm.gmap,
+    //     title:    'You Are Here'
+    // });
+
     
-    CurrentCoords.get().then(function(pos){
-      mapOptions.center = {lat: pos.latitude, lng: pos.longitude};
-
-      vm.gmap = new google.maps.Map(document.getElementById("Map"), mapOptions);
-
-      var youAreHere = new google.maps.Marker({
-        position: mapOptions.center,
-        map:      vm.gmap,
-        title:    'You Are Here'
-      });
-      
+    
+    LocationsService.get({radius: vm.radius, 
+                          lat: $scope.CurrentCoords.latitude, 
+                          lng: $scope.CurrentCoords.longitude })
+      .then(function(locations){
       $ionicLoading.hide();
-    
-      return Yocal.get({radius: 100000, lat:pos.latitude, lng:pos.longitude });
-      // return Yocal.get({radius: 8000, lat:mapOptions.center.lat, lng:mapOptions.center.lng });
-    })
-    .then(function(data){
-
       
-      angular.forEach(data.locations, function(value, index){
+      angular.forEach(locations, function(location, index){
+
         var infowindow = new google.maps.InfoWindow({
-                content: '<h3 id="firstHeading" class="firstHeading">'+value.name+'</h3>'
+                content: '<h3 id="firstHeading" class="firstHeading">'+location.name+'</h3>'
             }),
+
             marker = new google.maps.Marker({
-              position:  {lat: parseFloat(value.lat), lng:parseFloat(value.long)},
+              position:  {lat: parseFloat(location.lat), 
+                          lng: parseFloat(location.long)},
               map:       vm.gmap,
-              label:     value.name,
+              label:     location.name,
               animation: google.maps.Animation.DROP,
               opacity:   0
           });
@@ -59,16 +64,15 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
 
           var directionsDisplay = new google.maps.DirectionsRenderer({
             map: vm.gmap
-          });
-          var request = {
+          }),
+
+          request = {
             destination: marker.position,
             origin:      mapOptions.center,
             travelMode:  google.maps.TravelMode.WALKING
           };
 
-
-          // Pass the directions request to the directions service.
-          var directionsService = new google.maps.DirectionsService();
+          var directionsService = new google.maps.DirectionsService();// Pass the directions request to the directions service.
 
           directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
@@ -87,12 +91,9 @@ function MapCtrl($scope, $log, $state, $ionicLoading, CurrentCoords, Yocal, $tim
         
     });
 
-
-
-    
- 
    
 };//// MapCtrl
+
 
 
 controllersModule.controller('MapCtrl', MapCtrl);

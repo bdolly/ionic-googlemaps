@@ -1,49 +1,24 @@
 <ion-view view-title="Search">
   <ion-content>
-    <h1>Search</h1>
-	
-    <!-- <ion-slide-box on-slide-changed="slideHasChanged($index)">
-	  <ion-slide ng-repeat="location in locations | orderBy:'distancefromlocation'">
-	    {{}}
+    
+	    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+		  <ion-slide ng-repeat="location in locations ">
+	    
 	    <div class="box card">
 		  <div class="item item-divider">{{location.name}} <i class="fa fa-{{location.category =='Food' ?'cutlery':''}}" aria-hidden="true"></i></div>
 		  <div class="item item-text-wrap">
 		    <pre>{{location | json}}</pre>
 		  </div>
 		  <div class="item item-divider">
-		  	<p>{{locatio.travelTime}}</br>
+		  	<p>{{location.travelTime}}</br>
 		    <small>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</small></p>
 		  </div>
 		</div>
 
 	  </ion-slide>
 	</ion-slide-box> 
- -->
+
 	
-	<ion-list ng-controller="SearchCtrl"
-          show-delete="shouldShowDelete"
-          show-reorder="shouldShowReorder"
-          can-swipe="listCanSwipe">
-
-  		<ion-item ng-repeat="location in locations | orderBy:'distancefromlocation'"
-            class="item-thumbnail-left">
-
-    
-    		<h2>{{location.name}}</h2>
-    		<!-- <address> {{location.adress}} </address> -->
-    		<p>
-    			{{location.travelTime}} walk<br>
-    			<small>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</small>
-    			
-    		</p>
-    		
-    		<ion-option-button class="button-positive" ng-click="share(item)">Share</ion-option-button>
-    		<ion-option-button class="button-info" ng-click="edit(item)"> Edit </ion-option-button>
-    		<ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)"></ion-delete-button>
-    		<ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-  		</ion-item>
-	</ion-list>
-
 	
   </ion-content>
 </ion-view>

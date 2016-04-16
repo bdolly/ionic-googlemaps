@@ -5,6 +5,7 @@
 // require('./templates');
 require('./controllers/_index');
 require('./services/_index');
+require('./models/_index');
 // require('./components/_index');
 
 // create and bootstrap application
@@ -14,6 +15,7 @@ angular.element(document).ready(function() {
     'ionic',
     'app.controllers',
     'app.services',
+    'app.models',
     'ui.router'
     // 'templates',
     // 'ngSanitize',

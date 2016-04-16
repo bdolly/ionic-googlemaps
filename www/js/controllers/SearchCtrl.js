@@ -5,60 +5,45 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function SearchCtrl($scope, $log, $state, Yocal, CurrentCoords, $ionicLoading, $ionicSlideBoxDelegate, $timeout) {
+function SearchCtrl($scope, $rootScope, $q,  $log,  LocationsService,  $ionicLoading,  $ionicSlideBoxDelegate, AppSettings) {
+    $log = $log.getInstance('SearchCtrl');
+
  	// ViewModel
   	var vm = this;
-    // $scope.locations = $state.current.data.locations;
-    $scope.locations =[];
-    $scope.shouldShowDelete = false;
- 	$scope.shouldShowReorder = false;
- 	$scope.listCanSwipe = true;
-    var currentCords ={};
+    vm.radius = AppSettings.GMAP_RADIUS;
+    $scope.radius = AppSettings.GMAP_RADIUS;
 
-    $log = $log.getInstance('SearchCtrl');
+    $scope.locations =[];
+    $scope.CurrentCoords =  $rootScope.currentPosition;
 
     $ionicLoading.show({
     	template: "Finding Rad Spots ...",
     	backdrop: true
     });
 
-    // var southPhilly = {lat: 39.937893, lng:-75.1689347};
 
-    CurrentCoords.get().then(function(youAreHere){
-        currentCords = {lat:youAreHere.latitude, lng:youAreHere.longitude};
+    LocationsService.get({radius: vm.radius,  
+                          lat:    $scope.CurrentCoords.latitude,  
+                          lng:    $scope.CurrentCoords.longitude })
 
-    	return Yocal.get({radius: 80000, lat:currentCords.lat, lng:currentCords.lng});
-    })
-    .then(function(data){
-        var service = new google.maps.DistanceMatrixService;
+                    .then(function(data){
+                        data[0].setTravelTime().then(function(locale) {
+                            data[0] =locale;
+                            $scope.locations = data;   
+                            $ionicSlideBoxDelegate.update();
+                            $ionicLoading.hide();    
+                        });
+   	                });
 
-    	angular.forEach(data.locations, function(value, index){
-    	
-    		service.getDistanceMatrix({
-    			origins:       [currentCords],
-    			destinations:  [{lat: parseFloat(value.lat), lng: parseFloat(value.long)}],
-    			travelMode:    google.maps.TravelMode.WALKING,
-    			unitSystem:    google.maps.UnitSystem.IMPERIAL,
-    			avoidHighways: false,
-    			avoidTolls:    false
-    		}, function(response, status) {
 
-    			data.locations[index].travelTime = response.rows[0].elements[0].duration.text;
-                // $log.debug("{name} - {travelTime}", value);
-    		});
-    	});
+    $scope.slideHasChanged = function(idx) {
+        var currentSlide = $scope.locations[idx];
+        $log.debug('slideHasChanged {name}', currentSlide);
 
-        $ionicSlideBoxDelegate.update();
-        $scope.locations = data.locations;      
-
-        $timeout(function() {
-            $ionicLoading.hide();    
-        }, 1000);
-        
-
-   	});
-    
-    
+        currentSlide.setTravelTime().then(function(locale) {
+            return locale;
+        });
+    }
 
   
 };
