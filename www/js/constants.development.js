@@ -6,7 +6,10 @@ var AppSettings = {
     base: 'http://localhost:8100/api/v1/yokal/data/'
   },
 
-  GMAP_RADIUS: 1000
+  GMAP_DEFAULT:{
+  	RADIUS: 800,
+  	ZOOM:   14
+  }
 };
 
 module.exports = AppSettings;
