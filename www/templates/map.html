@@ -1,8 +1,14 @@
 <ion-view view-title="Map">
-  <ion-content >
-    <!-- <input type="number" ng-model="Map.zoom" ng-change="Map.updateZoom(Map.zoom)"></input>
- -->
+  <ion-content scroll="false">
+    
     <div id="Map" style="height:{{Map.gmap.height}}px; width:100%; webkit-transition: all 1s ease; "></div>
-      
+
+    <!-- <input type="number" ng-model="Map.knob.value" ng-change="Map.gmap.map.setZoom(Map.knob.value)"></input>
+ -->
+    <ui-knob  
+    	value="Map.knob.value" 
+    	options="Map.knob.options">
+    </ui-knob>
+
   </ion-content>
 </ion-view>

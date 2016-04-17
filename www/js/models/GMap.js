@@ -26,8 +26,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
     $log.debug('zoom {mapOptions.zoom}', this);
     
     this.map = new google.maps.Map(document.getElementById("Map"), this.mapOptions);
-    return this;
-  };//GMap constructor
+res  };//GMap constructor
 
 
   GMap.prototype ={

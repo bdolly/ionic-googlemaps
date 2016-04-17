@@ -15,8 +15,9 @@ module.exports = {
   // },
 
   'scripts': {
+    'test': 'test/**/*.spec.js',
     'src' : './www/js/**/*.js',
-    'dest': './www/js/'
+    'dest': './www/js/',
   },
 
 
@@ -30,6 +31,9 @@ module.exports = {
     'prodSourcemap' : false
   },
 
+  'test':{
+    'config':'/karma.conf.js'
+  }
 
 
 };

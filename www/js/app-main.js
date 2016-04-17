@@ -6,6 +6,7 @@
 require('./controllers/_index');
 require('./services/_index');
 require('./models/_index');
+require('../../bower_components/ng-knob/dist/ng-knob.min');
 // require('./components/_index');
 
 // create and bootstrap application
@@ -16,7 +17,8 @@ angular.element(document).ready(function() {
     'app.controllers',
     'app.services',
     'app.models',
-    'ui.router'
+    'ui.router',
+    'ui.knob'
     // 'templates',
     // 'ngSanitize',
     // 'app.services',
