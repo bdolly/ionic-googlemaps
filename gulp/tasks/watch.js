@@ -10,7 +10,7 @@ gulp.task('watch',function() {
   gulp.watch(config.scripts.src, ['browserify']);
   gulp.watch([config.scripts.src,config.scripts.test ], ['tdd']);
   
-  // gulp.watch(config.styles.src,  ['styles']);
+  gulp.watch(config.styles.src,  ['styles']);
   // gulp.watch(config.images.src,  ['images']);
   // gulp.watch(config.fonts.src,   ['fonts']);
   // gulp.watch(config.views.watch, ['views']);

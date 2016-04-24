@@ -21,3 +21,52 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+
+/* =======================================================================
+  Login.Connect 
+========================================================================== */
+.login-connect{
+	.connect-btn-wrap{
+		margin-top:180px;
+		padding:0 20px;
+	}
+	.connect-btn-wrap__divider{
+		text-align:center;
+		display: block;
+		position: relative;
+		&:before,
+		&:after{
+			content:"";
+			width: 45%;
+			height:1px;
+			display: block;
+			background: #ccc;
+			position: absolute;
+			top: 11px;
+		}
+		&:before{left:0;}
+		&:after{right:0;}
+	}
+
+}
+
+.yocal-header{
+		width:57%;
+		margin:80px auto 0 auto;
+		display: block;
+		
+		#logo{
+			text-align:center;
+			font-size: 48px;
+			font-weight: bold;
+		}
+	}
+
+/* =======================================================================
+  Login 
+ ========================================================================== */
+ .login{
+ 	.yocal-header{
+ 		margin: 50px auto;
+ 	}
+ }

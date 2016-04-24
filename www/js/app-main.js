@@ -41,7 +41,7 @@ angular.element(document).ready(function() {
 
   setTimeout(function() {
     angular.bootstrap(document, ['app']);   
-  }, (2*1000));
+  }, (1000));
   
 
 });

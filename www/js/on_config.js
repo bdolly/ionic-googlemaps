@@ -22,7 +22,26 @@ $stateProvider
         }
     }
   })
+  .state('app.connect', {
+    url: '/connect',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/connect.html',
+        controller: 'ConnectCtrl as Connect'
+      }
+    }
+  } )
 
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl as Lgn'
+      }
+    }
+  } )
+  
   .state('app.search', {
     url: '/search',
     views: {
@@ -33,6 +52,7 @@ $stateProvider
     }
   })
 
+  
   .state('app.map', {
       
       url: '/map',
@@ -65,7 +85,7 @@ $stateProvider
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/map');
+  $urlRouterProvider.otherwise('/app/connect');
   
   
 

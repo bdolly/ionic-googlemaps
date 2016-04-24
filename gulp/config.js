@@ -7,12 +7,12 @@ module.exports = {
   'UIPort'       : 4001,
   'serverPort'   : 4002,
 
-  // 'styles': {
-  //   'src' : 'app/scss/**/*.scss',
-  //   'dest': 'dist/css',
-  //   'prodSourcemap': false,
-  //   'sassIncludePaths': []
-  // },
+  'styles': {
+    'src' : 'scss/**/*.scss',
+    'dest': 'www/css',
+    'prodSourcemap': false,
+    'sassIncludePaths': []
+  },
 
   'scripts': {
     'test': 'test/**/*.spec.js',
