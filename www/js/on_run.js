@@ -3,10 +3,11 @@
 /**
  * @ngInject
  */
-function OnRun($ionicPlatform, $log) {
+function OnRun($ionicPlatform, $log, $animate) {
   $log = $log.getInstance('OnRun');
-  
+   
   $ionicPlatform.ready(function() {
+    $animate.enabled(true);
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

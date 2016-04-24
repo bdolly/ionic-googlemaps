@@ -3,11 +3,15 @@
 // angular modules
 // require('angular-module-sanitize');
 // require('./templates');
+
 require('./controllers/_index');
 require('./services/_index');
 require('./models/_index');
+require('./directives/_index');
+
 require('../../bower_components/ng-knob/dist/ng-knob.min');
-// require('./components/_index');
+require('../../bower_components/angular-animate/angular-animate.min');
+
 
 // create and bootstrap application
 angular.element(document).ready(function() {
@@ -17,12 +21,12 @@ angular.element(document).ready(function() {
     'app.controllers',
     'app.services',
     'app.models',
+    'app.directives',
     'ui.router',
-    'ui.knob'
+    'ui.knob',
+    'ngAnimate'
     // 'templates',
     // 'ngSanitize',
-    // 'app.services',
-    // 'app.components'
   ];
 
   // mount on window for testing
@@ -34,6 +38,10 @@ angular.element(document).ready(function() {
 
   angular.module('app').run(require('./on_run'));
 
-  angular.bootstrap(document, ['app']);
+
+  setTimeout(function() {
+    angular.bootstrap(document, ['app']);   
+  }, (2*1000));
+  
 
 });

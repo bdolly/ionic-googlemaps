@@ -17,8 +17,8 @@ $stateProvider
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
     resolve:{
-        coordinates:function(CurrentCoords) {
-          return CurrentCoords.get();
+        coordinates:function(CurrentCoords, $timeout) {
+            return CurrentCoords.get();  
         }
     }
   })

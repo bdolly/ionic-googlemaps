@@ -23,7 +23,7 @@ var enchanceLogger = function( $log ){
         info  : $log.info,
         warn  : $log.warn,
         debug : $log.debug,
-        // error : $log.error
+        error : $log.error
       };
   })( $log ); 
 
