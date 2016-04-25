@@ -9,8 +9,8 @@ require('./services/_index');
 require('./models/_index');
 require('./directives/_index');
 
-require('../../bower_components/ng-knob/dist/ng-knob.min');
-require('../../bower_components/angular-animate/angular-animate.min');
+require('../bower_components/ng-knob/dist/ng-knob.min');
+require('../bower_components/angular-animate/angular-animate.min');
 
 
 // create and bootstrap application
