@@ -1,7 +1,35 @@
-<ion-view view-title="Connect">
+<ion-view view-title="Search">
   <ion-content>
     
 	    
+	<h4>{{locations_loaded}} of {{locations.length}}</h4>
+	<div class="list">
+		<div class="item item-divider" ng-repeat="group in locations_groups">
+			<h3>{{ group.category }}</h3>
+
+			<ion-slide-box show-pager="false" class="category-slider" on-slide-changed="slideHasChanged($index)">
+			  <ion-slide ng-repeat="location in group.locations | orderBy:'travelTime.value'">
+			    <div class="box card">
+			    	<div class="item item-divider">
+			    		{{location.name}}<br>
+			    		<i class="ion-android-walk"> <small>{{location.travelTime.text}} </small></i>
+
+			    	</div>
+			    </div>
+			  </ion-slide>
+
+			  
+		</div>
+	</div>
+
+
+	
+	
+	
+
+</div>
+
+	
 	
   </ion-content>
 </ion-view>

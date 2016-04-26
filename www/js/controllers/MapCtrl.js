@@ -14,7 +14,7 @@ function MapCtrl($rootScope, $scope, $log, $timeout, $ionicLoading, AppSettings,
     vm.gmap = new GMap({zoom:13});    
     vm.gmap.height = 625;
     var locationsRadius = vm.gmap.setRadiusCircle();
-    vm.gmap.plotLocations();
+    // vm.gmap.plotLocations();
 
     
 

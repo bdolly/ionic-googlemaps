@@ -10,16 +10,20 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
   function Location(LocationData){
     angular.extend(this, LocationData);
-    // $log.debug('{name}', this);
-    
+    $log.debug('{name}', this);
   }
 
 
   Location.responseTransformer = function (responseData) {
     $log.debug('resoponseTransformer {length}', responseData.locations);
+    if(responseData.locations){
+      return responseData.locations
+              .map(Location.build);  
+    }
 
-    return responseData.locations
-    					.map(Location.build);
+      return responseData.map(Location.build);  
+
+    
   }
 
 
@@ -38,7 +42,8 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
          avoidHighways: false,
          avoidTolls:    false
        }, function(response, status) {
-         	_location.travelTime = response.rows[0].elements[0].duration.text;
+         	_location.travelTime = response.rows[0].elements[0].duration;
+          _location.distance = response.rows[0].elements[0].distance;
          	deferred.resolve(_location);
          // $log.debug("{name} - {travelTime}", _location);
           

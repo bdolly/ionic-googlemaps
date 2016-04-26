@@ -19,6 +19,14 @@ function LocationsService($log, Yocal, Location) {
 
   };
 
+  service.all = function( getData ) {
+
+    $log.debug('ALL');
+
+    return Yocal.all().then(Location.responseTransformer);
+
+  };
+
   return service;
 
 }
