@@ -14,6 +14,7 @@ require('../bower_components/angular-animate/angular-animate.min');
 require('../bower_components/ionic-advanced-carousel/dist/advanced-carousel.min');
 
 
+
 // create and bootstrap application
 angular.element(document).ready(function() {
 
