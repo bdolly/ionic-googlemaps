@@ -26,6 +26,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
     $log.debug('zoom {mapOptions.zoom}', this);
     
     this.map = new google.maps.Map(document.getElementById("Map"), this.mapOptions);
+    
  };//GMap constructor
 
 
@@ -38,7 +39,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
       
       var _marker = new google.maps.Marker({
             position:  _markerSettings.center,
-            map:       this.map,
+            map:       _markerSettings.map,
             title:     _markerSettings.title,
             opacity:   _markerSettings.opacity,
             animation: google.maps.Animation.DROP
@@ -54,7 +55,8 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
       $log.debug('buildInfoWindow for {name}', locationInfo);
       var infowindow = new google.maps.InfoWindow({
                     content: '<h3 id="firstHeading" class="firstHeading">'+locationInfo.name+'</h3>'+
-                             '<p>'+locationInfo.travelTime+' walk</p>'
+                             '<p>'+locationInfo.travelTime.text+' walk</p>'+
+                             '<small>'+locationInfo.distancefromlocation+'</small>'
       });
 
       locationMarker.addListener('click', function() {
