@@ -3,6 +3,7 @@
   "app_id": "",
   "defaultBrowser": true,
   "gulpStartupTasks": [
+    "watch",
     "browserify"
   ],
   "watchPatterns": [

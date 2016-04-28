@@ -72,11 +72,52 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  }
 
 /* =======================================================================
-  Search 
+  browse
  ========================================================================== */
- .category-slider{
- 	.card{
- 		width: 150px;
- 		height:150px;
+
+ .a-carousel{
+ 	.card--location{
+ 		width: 120px;
+ 		height:100px;
+ 	}
+
+ 	.card--location-header{
+ 		text-align:left;
+ 		padding:5px;
+ 		*{ margin:0; padding:0;}
+
+ 		.location-name{ 
+ 			font-size: 12px; 
+ 			font-weight: bold;
+ 			line-height: 1;
+ 		}
+
+ 		.card--location-header-meta{ 
+ 			.location-expense{
+ 				display: block;
+ 				width:21%;
+ 				position: relative;
+ 				float:left;
+
+ 				.location-expense-indicator{
+ 					overflow:hidden;
+ 					display: block;
+ 				}
+ 				.location-expense-base{
+ 					position: absolute;
+ 					top:0;
+ 					left:0;
+ 					opacity: 0.125;
+ 				}
+ 			}
+ 			i{
+ 				float:left;
+ 				width:33.33%;
+ 				margin-right:5px;
+ 				display: block;
+ 				line-height: 1; 
+ 				font-size: 10px; 
+ 			}	
+ 		}
  	}
  }

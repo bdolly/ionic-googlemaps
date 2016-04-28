@@ -42,12 +42,12 @@ $stateProvider
     }
   } )
   
-  .state('app.search', {
-    url: '/search',
+  .state('app.browse', {
+    url: '/browse',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html',
-        controller: 'SearchCtrl'
+        templateUrl: 'templates/browse.html',
+        controller: 'BrowseCtrl'
       }
     }
   })

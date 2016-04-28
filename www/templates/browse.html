@@ -1,22 +1,27 @@
-<ion-view view-title="Search">
+<ion-view view-title="Browse">
   <ion-content>
     
-	    <ion-slide-box on-slide-changed="slideHasChanged($index)">
-		  <ion-slide ng-repeat="location in locations ">
 	    
-	    <div class="box card">
-		  <div class="item item-divider">{{location.name}} <i class="fa fa-{{location.category =='Food' ?'cutlery':''}}" aria-hidden="true"></i></div>
-		  <div class="item item-text-wrap">
-		    <pre>{{location | json}}</pre>
-		  </div>
-		  <div class="item item-divider">
-		  	<p>{{location.travelTime}}</br>
-		    <small>{{ (location.distancefromlocation*0.000621371).toFixed(2)}} miles away</small></p>
-		  </div>
-		</div>
+	<h4>{{locations_loaded}} of {{locations.length}}</h4>
 
-	  </ion-slide>
-	</ion-slide-box> 
+
+	<div class="list">
+		<div class="item item-divider" ng-repeat="group in locations_groups_sorted">
+			<h3>{{ group.category }}</h3>
+
+			<a-carousel
+				class="a-carousel"
+				carousel-options="carousels[group.category_slug]"
+				array-provider="group.locations"
+				on-select="onSelectCarousel(item)">
+			</a-carousel>
+
+		</div>
+	</div>
+
+
+
+
 
 	
 	
