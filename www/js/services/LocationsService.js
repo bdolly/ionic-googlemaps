@@ -5,7 +5,7 @@ var servicesModule = require('./_index.js');
 /**
  * @ngInject
  */
-function LocationsService($log, Yocal, Location) {
+function LocationsService($log, Yocal, Location, $q) {
   $log = $log.getInstance("LocationsServiceService");
 
   var service = {};
@@ -15,7 +15,12 @@ function LocationsService($log, Yocal, Location) {
     $log.debug('GET location in a {radius}  of {lat}, {lng}', getData);
 
     return Yocal.get(getData)
-                .then(Location.responseTransformer);
+                .then(function(data){
+                  // only return locations when they have ALL
+                  // been populated with travelTimes
+                  return $q.all(Location.responseTransformer(data));
+                });
+                
 
   };
 
