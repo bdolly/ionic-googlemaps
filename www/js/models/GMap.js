@@ -11,6 +11,8 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
 
   var currentCenter = $rootScope.currentPosition;
 
+
+
   function GMap(mapSettings){
     
     this.mapOptions = {
@@ -28,6 +30,8 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
     this.map = new google.maps.Map(document.getElementById("Map"), this.mapOptions);
     
  };//GMap constructor
+
+
 
 
   GMap.prototype ={

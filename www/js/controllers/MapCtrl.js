@@ -68,7 +68,11 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
         return vm.markers;
     };
 
-      
+    
+    $ionicLoading.show({
+        template: "Exploring Your Area ...",
+        backdrop: true
+    });
 
     // get all locations around specified area
       LocationsService
@@ -86,8 +90,10 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
           vm.locationsRadius = vm.gmap.setRadiusCircle({radius: vm.this_radius});
           vm.gmap.map.fitBounds(vm.locationsRadius.getBounds());
           
-          setKnobValue(vm.this_radius)
-                    
+          setKnobValue(vm.this_radius);
+          $ionicLoading.hide();
+
+
         });//end .then
 
 
@@ -97,16 +103,41 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
 
 
          $scope.$watch("Map.knob.value", function(newValue, oldValue) {
-            $log.log("new Map.knob.value: "+newValue);
-            $log.log("old Map.knob.value: "+oldValue);
+            // $log.log("new Map.knob.value: "+newValue);
+            // $log.log("old Map.knob.value: "+oldValue);
 
-            vm.locationsRadius.setRadius(newValue);
-            // vm.gmap.map.panTo({lat:$rootScope.currentPosition.latitude, lng:$rootScope.currentPosition.longitude});
-            var MapBoundsArr = _.toArray(vm.gmap.map.getBounds());
-            var RadiusBoundsArr = _.toArray(vm.locationsRadius.getBounds());
-            // TODO: check if RadiusBounds are within MapBounds
-            $log.log("MapBoundsArr: "+MapBoundsArr);
-            $log.log("RadiusBoundsArr: "+ RadiusBoundsArr );
+            if(vm.locationsRadius) vm.locationsRadius.setRadius(newValue);
+            
+            
+            if(vm.locationsRadius){
+
+               // Get the bounds
+              var circleBounds = vm.locationsRadius.getBounds();
+              var mapBounds = vm.gmap.map.getBounds();
+
+
+              var ne = circleBounds.getNorthEast(); // LatLng of the north-east corner
+              var sw = circleBounds.getSouthWest();
+              var nw = new google.maps.LatLng(ne.lat(), sw.lng());
+              var se = new google.maps.LatLng(sw.lat(), ne.lng());
+              
+              var LatLngList = new Array (nw, se);
+
+              
+              if(!mapBounds.contains(ne)){
+                for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+                  //  And increase the bounds to take this point
+                  mapBounds.extend(LatLngList[i]);
+                }
+                vm.gmap.map.fitBounds(mapBounds);
+              }else{
+                vm.gmap.map.fitBounds(circleBounds);
+              }
+            
+
+            }//end if(vm.locationsRadius)
+           
+            
 
             // show/reveal locations inside radius
             vm.locations_by_distance.map(function(locate){
