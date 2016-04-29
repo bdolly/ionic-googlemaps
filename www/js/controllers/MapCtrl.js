@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, LocationsService) {
+function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, LocationsService, $q) {
 
     $log = $log.getInstance("MapCtrl");
 
@@ -63,6 +63,7 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
                       });
                     
                 vm.markers[locate._id] = marker;
+            var infoWNDW = vm.gmap.buildInfoWindow(locate, marker);
           });
 
         return vm.markers;
@@ -80,7 +81,9 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
               lat:    currentCenter.latitude, 
               lng:    currentCenter.longitude})
         .then(function(locations) {
-
+          $q.all(locations).then(function(data){
+            console.log(data)
+          })
           // sort locations by distnace 
           vm.locations_by_distance = _.sortBy(locations, 'distancefromlocation');
           setMarkers(vm.locations_by_distance);

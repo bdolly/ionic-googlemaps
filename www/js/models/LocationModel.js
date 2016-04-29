@@ -16,9 +16,18 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
   Location.responseTransformer = function (responseData) {
     $log.debug('resoponseTransformer {length}', responseData.locations);
+    
     if(responseData.locations){
-      return responseData.locations
-              .map(Location.build);  
+      
+      var populated_locations = [];
+
+      responseData.locations
+              .map(function(data){
+                var location = new Location(data);
+                populated_locations.push(location.setTravelTime());
+              });
+
+        return populated_locations;
     }
 
       return responseData.map(Location.build);  
@@ -56,8 +65,8 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
 
   Location.build = function(lData) {
-    // $log.debug('build {name}', lData);
-    // Location.setTravelTime(lData);
+    $log.debug('build {name}', lData);
+    
     return new Location(lData);
   }
 
