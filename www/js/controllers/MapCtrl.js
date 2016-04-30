@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, LocationsService, $q) {
+function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, LocationsService, $ionicSlideBoxDelegate) {
 
     $log = $log.getInstance("MapCtrl");
 
@@ -16,8 +16,9 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
     vm.this_radius = 5000;
     vm.gmap = new GMap({zoom:13, radius:vm.this_radius});    
     vm.gmap.height = 625;
+    vm.showSlider = false;
     vm.markers = [];    
-    // vm.gmap.plotLocations();
+    
     
     vm.locations_by_distance = [];
 
@@ -33,14 +34,14 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
           vm.knob ={
               value:val,
               options:{
-                size: 200,
+                size: 100,
                 min:  1,
                 max:  10000,
                 step: 1,
                 barColor: '#5BC01E',
                 trackColor: '#212121',
-                trackWidth: 15,
-                barWidth: 30,
+                trackWidth: 5,
+                barWidth: 20,
                 subText: {
                   enabled: true,
                   text: 'meter radius'
@@ -48,7 +49,9 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
               }
             };
     };
-   
+
+    
+
 
     var setMarkers = function(locations) {
       locations.map(function(locate){
@@ -61,14 +64,32 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
                         map:       vm.gmap.map,
                         opacity:   0.125
                       });
-                    
+
+                  marker.addListener('click',function(){
+                     $scope.$broadcast('marker:clicked', locate);
+                  });
+
                 vm.markers[locate._id] = marker;
-            var infoWNDW = vm.gmap.buildInfoWindow(locate, marker);
+            // var infoWNDW = vm.gmap.buildInfoWindow(locate, marker);
           });
 
         return vm.markers;
     };
 
+    
+    $scope.$on("marker:clicked", function(e, marker) {
+      console.log('click received');
+
+      $scope.$apply(function() {
+        vm.showSlider = true;
+        $log.log(marker.name);
+        $log.log(_.indexOf(vm.locations_by_distance, marker));
+        $ionicSlideBoxDelegate.slide(_.indexOf(vm.locations_by_distance, marker));
+        vm.gmap.plotRouteTo(marker);
+      })
+
+
+    });
     
     $ionicLoading.show({
         template: "Exploring Your Area ...",
@@ -91,15 +112,16 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
           vm.locationsRadius = vm.gmap.setRadiusCircle({radius: vm.this_radius});
           vm.gmap.map.fitBounds(vm.locationsRadius.getBounds());
           
-          setKnobValue(vm.this_radius);
+          setKnobValue(1000);
           $ionicLoading.hide();
 
-
+          $ionicSlideBoxDelegate.update();
         });//end .then
 
 
 
 
+        
 
 
 
@@ -108,7 +130,7 @@ function MapCtrl($rootScope, $scope, $log, $ionicLoading, AppSettings, GMap, Loc
             // $log.log("old Map.knob.value: "+oldValue);
 
             if(vm.locationsRadius) vm.locationsRadius.setRadius(newValue);
-            
+            vm.showSlider = false;
             
             if(vm.locationsRadius){
 

@@ -11,7 +11,7 @@ require('./directives/_index');
 
 require('../bower_components/ng-knob/dist/ng-knob.min');
 require('../bower_components/angular-animate/angular-animate.min');
-require('../bower_components/ionic-advanced-carousel/dist/advanced-carousel.min');
+require('../bower_components/ionic-advanced-carousel/src/advanced-carousel');
 
 
 

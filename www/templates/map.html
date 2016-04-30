@@ -1,15 +1,40 @@
 <ion-view view-title="Map">
   <ion-content scroll="false">
-    
+
+    <ion-slide-box class="map--slider" ng-class="{here:Map.showSlider}">
+    	<ion-slide ng-repeat="location in Map.locations_by_distance">
+    		<div class="box card card--location">
+
+    			<div class="item item-divider card--location-header">
+					<span class="location-name">{{location.name}}</span><br>
+					<div class="card--location-header-meta">
+						<i class="ion-android-walk"> <small>{{location.travelTime.text}} </small></i>
+						<i class="ion-android-time"> <small>0 - 0</small></i>
+						<div class="location-expense">
+							<span style="width:{{location.distance.value/100}}%"class="location-expense-indicator"> 
+								<i class="ion-cash"> </i>
+							</span>
+							<i class="ion-cash location-expense-base"> </i>
+						</div>
+					</div>
+				</div>
+
+    		</div>
+    	</ion-slide>
+	</ion-slide-box>
+
+
     <div id="Map" style="height:{{Map.gmap.height}}px; width:100%; webkit-transition: all 1s ease; "></div>
 
-    <!-- <input type="number" ng-model="Map.knob.value" ng-change="Map.gmap.map.setZoom(Map.knob.value)"></input>
- -->
-    <ui-knob  
-    	id="map-knob"
-    	value="Map.knob.value" 
-    	options="Map.knob.options">
-    </ui-knob>
+    <nav class="map-discovery-nav">
+    	<ui-knob  
+    		class="map-knob"
+    		value="Map.knob.value" 
+    		options="Map.knob.options"
+    		style="width:{{Map.knob.options.size}}px; "
+    	></ui-knob>
+    </nav>
+    
 
   </ion-content>
 </ion-view>

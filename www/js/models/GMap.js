@@ -49,6 +49,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
             animation: google.maps.Animation.DROP
       });
 
+       
       return _marker;
     },
 
@@ -63,10 +64,10 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
                              '<small>'+locationInfo.distancefromlocation+'</small>'
       });
 
-      locationMarker.addListener('click', function() {
-        $rootScope.$broadcast('marker:clicked', locationInfo );
-        infowindow.open( _map.map ,locationMarker);
-      });
+      // locationMarker.addListener('click', function() {
+      //   $rootScope.$broadcast('marker:clicked', locationInfo );
+      //   infowindow.open( _map.map ,locationMarker);
+      // });
 
       return infowindow;
     },
