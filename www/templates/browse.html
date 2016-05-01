@@ -1,7 +1,7 @@
 <ion-view view-title="Browse">
   <ion-content>
     
-	  
+	  <h3>{{locations_loaded}}  of {{locations.length}}</h3>
 	<div class="list">
 		<div class="item item-divider" ng-repeat="group in locations_groups_sorted">
 			<h3>{{ group.category }}</h3>

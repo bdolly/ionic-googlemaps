@@ -1,5 +1,26 @@
 <ion-view view-title="Browse">
   <ion-content>
-    <h1>Browse</h1>
+    
+	  <h3>{{locations_loaded}}  of {{locations.length}}</h3>
+	<div class="list">
+		<div class="item item-divider" ng-repeat="group in locations_groups_sorted">
+			<h3>{{ group.category }}</h3>
+
+			<a-carousel
+				class="a-carousel"
+				carousel-options="carousels[group.category_slug]"
+				array-provider="group.locations"
+				on-select="onSelectCarousel(item)">
+			</a-carousel>
+
+		</div>
+	</div>
+
+
+
+
+
+	
+
   </ion-content>
 </ion-view>

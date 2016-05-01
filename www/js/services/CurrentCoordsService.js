@@ -15,18 +15,15 @@ function CurrentCoords($q, $http, $log,  AppSettings) {
     var deferred = $q.defer();    
 
     navigator.geolocation.getCurrentPosition(function(pos) {
-        
       $log.debug('lat: {coords.latitude}',pos);
       $log.debug('long: {coords.longitude}',pos);
-
       deferred.resolve(pos.coords);
-        
    }, function(error) {
-       $log.warn('Unable to get location: ' + error.message);
-       deferred.reject(err, status);
+       $log.warn('Unable to get location: ' + error);
+       deferred.reject(error, status);
    });
-
-
+    
+  
     
     return deferred.promise;
   };

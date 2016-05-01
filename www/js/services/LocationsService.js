@@ -9,6 +9,7 @@ function LocationsService($log, Yocal, Location, $q) {
   $log = $log.getInstance("LocationsServiceService");
 
   var service = {};
+  
 
   service.get = function( getData ) {
 
@@ -28,7 +29,12 @@ function LocationsService($log, Yocal, Location, $q) {
 
     $log.debug('ALL');
 
-    return Yocal.all().then(Location.responseTransformer);
+    return Yocal.all()
+                .then(function(data){
+                  // only return locations when they have ALL
+                  // been populated with travelTimes
+                  return $q.all(Location.responseTransformer(data));
+                });
 
   };
 

@@ -40,7 +40,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
       var _markerSettings = {};
       angular.extend(_markerSettings, this.mapOptions, markerData);
       $log.debug('dropMarker for "{title}"" at "{center.lat}, {center.lng}"', _markerSettings);
-      
+
       var _marker = new google.maps.Marker({
             position:  _markerSettings.center,
             map:       _markerSettings.map,
@@ -133,13 +133,17 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
             map:                 _map.map,
             draggable:           _routeSettings.draggable,
             suppressInfoWindows: _routeSettings.suppressInfoWindows,
-            suppressMarkers:     _routeSettings.suppressMarkers
+            suppressMarkers:     _routeSettings.suppressMarkers,
+            // preserveViewport: true
           }),
+      
           request = {
             destination: {lat: parseFloat(location.lat), 
                           lng: parseFloat(location.long)},
             origin:      _routeSettings.origin,
             travelMode:  google.maps.TravelMode.WALKING,
+            provideRouteAlternatives: false,
+
           },
           directionsService = new google.maps.DirectionsService();// Pass the directions request to the directions service.
 
@@ -152,6 +156,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
             }
           });///directiosService.route
 
+          return directionsDisplay;
 
     },
 

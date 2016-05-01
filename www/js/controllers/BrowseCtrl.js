@@ -58,9 +58,9 @@ function BrowseCtrl($scope, $rootScope, $q, $http, $log, $filter, $timeout, Loca
                                         .map(function(locations, cat, array) {
 
                                             locations.map(function(location) {
-                                                location.setTravelTime().then(function() {
-                                                    $scope.locations_loaded++;
-                                                });
+                                                $timeout(function() {
+                                                    $scope.locations_loaded++;    
+                                                },10)
                                             });
 
                                             return {
@@ -70,7 +70,7 @@ function BrowseCtrl($scope, $rootScope, $q, $http, $log, $filter, $timeout, Loca
                                             };
                                         })
                                         .map(function(category_obj) {
-                                            $scope.carousels[category_obj.category_slug] = angular.extend({}, {carouselID: 'locations-carousel-'+category_obj.category_slug, itemSelected:{}}, $scope.carouselOptions);
+
                                             return category_obj;
                                         })
                                         .value();
@@ -89,6 +89,10 @@ function BrowseCtrl($scope, $rootScope, $q, $http, $log, $filter, $timeout, Loca
                                                                       return angular.extend({},group, {locations:sorted_locations} );
                                                                   })
                                                                   .sortBy('category')
+                                                                  .map(function(category_obj) {
+                                                                      $scope.carousels[category_obj.category_slug] = angular.extend({}, {carouselId: 'locations-carousel-'+category_obj.category_slug, itemSelected:_.first(category_obj.locations)}, $scope.carouselOptions);
+                                                                      return category_obj;
+                                                                  })
                                                                   .value();
                                                           
                                 $ionicLoading.hide();      

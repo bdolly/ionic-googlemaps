@@ -7,6 +7,7 @@
 
     advancedCarousel.$inject = ['$compile', '$timeout', '$ionicScrollDelegate'];
     function advancedCarousel($compile, $timeout, $ionicScrollDelegate) {
+
         return {
             restrict        : 'E',
             replace         : true,
@@ -26,6 +27,8 @@
         /////////
 
         function linkFunc(scope, el, attr, ctrl) {
+            // console.log(ctrl);
+
             ctrl.el = el;
 
             ctrl.options.trackBy    = typeof attr.trackBy !== 'undefined' ? attr.trackBy : '$index';
@@ -68,7 +71,7 @@
             // Compile dynamic template
             html = $compile(html)(scope);
             el.append(html);
-
+            // console.log(html)
             /**
              * $timeout so ng-repeat is finished in order to calculate width of carousel
              */
@@ -76,7 +79,6 @@
                 if (ctrl.arrayProvider && ctrl.arrayProvider.length > 0) {
                     ctrl.initCarousel();
                 }
-
                 allowVerticalScroll();
             }, 0);
 
@@ -89,6 +91,8 @@
 
                 return directive;
             }
+            // console.log(createItemDirective())
+
 
             // this method allows to scroll the page below the carousel
             function allowVerticalScroll() {
@@ -122,7 +126,7 @@
     Controller.$inject = ['$scope', '$element', '$timeout', '$window', '$ionicScrollDelegate'];
     function Controller($scope, $element, $timeout, $window, $ionicScrollDelegate) {
         var vm = this;
-
+        
         vm.options = {
             showScroll    : false,
             carouselId    : 'my-carousel',
@@ -151,6 +155,8 @@
         vm.selectItem   = selectItem;
         vm.onScroll     = onScroll;
 
+        console.log(vm);
+
         activate();
 
         //////////
@@ -172,6 +178,8 @@
              * @param {{carouselId:string}} param
              */
             function onArrayProviderUpdated(e, param) {
+                console.log('onArrayProviderUpdated');
+                console.log(param)
                 var carouselId;
                 if (typeof param === 'object') {
                     carouselId = param.carouselId;
