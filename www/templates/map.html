@@ -1,5 +1,8 @@
 <ion-view view-title="Map">
-  <ion-content scroll="false">
+  <ion-content 
+    scroll="false"
+    ng-class="{'locations-loaded': Map.locations_by_distance.length > 0 }"
+  >
     
     <nav class="map--slider-metaBar" ng-class="{'is-shown':Map.slider.shown}" >
         <h4><span class="meta-category">{{Map.slider.meta.category}} </span>{{Map.slider.meta.travelTime.text}}</h4>
@@ -7,7 +10,7 @@
 
     <ion-slide-box 
             class="map--slider" 
-            ng-class="{'is-shown':Map.slider.shown}" 
+            ng-class="{'is-shown':Map.slider.shown}"
             show-pager="false"
             on-slide-changed="slideHasChanged($index)">
 
@@ -26,10 +29,7 @@
                             <span style="width:{{location.travelTime.value/100}}%"class="location-expense-indicator"> <i class="ion-cash"> </i></span>
                             <i class="ion-cash location-expense-base"> </i>
                         </div>
-
 					</div>
-
-                    
 
 				</div>
     		</div>
@@ -38,10 +38,33 @@
 	</ion-slide-box>
 
 
-    <div id="Map" style="height:{{Map.gmap.height}}px; width:100%; "  ng-class="{'location-focused':Map.gmap.locationFocused}"></div>
 
-    <nav class="map-discovery-nav" ng-class='{loaded:Map.locations_loaded}'>
+    <div class="map-discovery-cats">
+        <div class="map-cats-wrap">
+            <ul class="map-cats-list">
+                <li ng-repeat="category in Map.locations_categories.list" class="map-cat">
+                    <button style="transform:translate3d(0,{{Map.locations_categories.distance}}px ,0);"
+                    ng-class="{expanded: Map.locations_categories.distance != 0}"
+                    ng-click="Map.load_category(category)">
+                        {{category.name}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+                
+        <div class="map-cat map-cat-center"></div>     
+    </div>
+
+
+
+    <div id="Map" style="height:{{Map.gmap.height}}px; width:100%;"  ng-class="{'location-focused':Map.gmap.locationFocused}"></div>
+
+
+    <nav class="map-discovery-nav" 
+         ng-class='{loaded:Map.locations_loaded}'
+    >
         <div class="map-discovery-knob">
+            <span>{{Map.locations_categories.current.toUpperCase()}}</span>
             <ui-knob  
                 class="radius-knob"
                 value="Map.knob.value" 

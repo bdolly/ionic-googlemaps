@@ -129,7 +129,99 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 /* =======================================================================
   Map 
  ========================================================================== */
- 
+ 	.locations-loaded{
+		.map-discovery-cats{
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+			pointer-events: none;
+			opacity: 0;
+			z-index: -1;
+		} 		
+
+ 	}
+
+ 		.map-discovery-cats{
+ 			width:  100%;
+ 			height: 100%;
+ 			position: absolute;
+ 			z-index: 1000;
+ 			top:0;
+ 			left: 0;
+ 			display: block;
+ 			transition: all 0.25s ease;
+ 			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.5+100 */
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6-15 */
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+ 			.map-cats-wrap{
+ 				display: block;
+ 				position:absolute;
+ 				top:40%;
+ 				left:50%;
+ 			}
+ 				.map-cats-list{
+ 					list-style-type: none;
+    				padding: 0;
+    				margin: 0;
+    				position: absolute;
+    				left: 0;
+    				top: 0;
+ 				}
+
+ 				.map-cat{
+ 					position: absolute;
+    				top: 0;
+    				left: 0;
+    				width: 0;
+    				height: 0;
+    				transform-origin:center;
+
+    				&:first-child{transform:rotate(120deg);}
+    				&:nth-child(2){transform:rotate(180deg);}
+    				&:nth-child(3){transform:rotate(240deg);}
+
+
+    				button{
+    					width:25px;
+ 						height:25px;
+ 						display: block;
+ 						position: absolute;
+    					top: 0;
+    					left: 0;
+
+    					opacity: 0;
+ 						border-radius:50%;
+ 						background:#ccc;
+
+ 						transition: all 0.25s linear 0.75s;
+
+ 						&.expanded{ 
+ 							opacity: 1; 
+ 							width:50px;
+ 							height:50px;
+ 							margin-left:-25px;
+ 							margin-top:-25px;
+ 						}
+    				}
+ 					
+ 				}
+ 				.map-cat-center{
+ 					position: absolute;
+ 					top:50%;
+ 					left:50%;
+ 					transform:translate(-50%, -50%);
+ 					background: blue;
+ 				}
+ 		}
+
+
 #Map{
 	transition:height 1s ease;
 	position: absolute;
@@ -138,7 +230,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	z-index:1;
 	transition: all 0.25s ease;
 	&.location-focused{
-		height: 350px !important;
+		// height: 350px !important;
 		// bottom:300px;
 		// transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-.004,0,0,1,0,0,-60,0,1)!important;
   //       -webkit-transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-.004,0,0,1,0,0,-60,0,1)!important;
@@ -316,23 +408,58 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  	&.loaded{
 		background:rgba(#fff, 1);
 		.map-discovery-knob{
-			.radius-knob{ transform: scale(1); opacity:1;}
+			transform: scale(1);
+			opacity: 1;
+			span{
+				top:50%; 
+				opacity:1;
+			}
 		} 
  	}	
 
  	.map-discovery-knob{
  		width: 100px;
+ 		height: 100px;
  		background:#fff;
- 		border-radius: 50px;
+ 		border-radius: 50%;
  		margin:-50px auto 0 auto;
+ 		opacity: 0;
 
+ 		transition: all 0.25s ease;
+ 		transform: scale(0.25);
+ 		transform-origin: center;
+
+ 		span{
+ 			display: inline-block;
+ 			position: absolute;
+ 			top:60%;
+ 			left:50%;
+ 			opacity: 0;
+ 			text-align: center;
+ 			font-weight: bold;
+ 			color:#387ef5;
+ 			transition: all 0.25s ease 0.25s;
+ 			transform: translate(-50%, -50%);
+
+ 			&:after{
+ 				content:'';
+ 				width: 100%;
+ 				height: 2px;
+ 				display: block;
+
+ 				position: absolute;
+ 				bottom:0;
+ 				left:0%;
+ 				// transform: translateX(-50%);
+ 				background: #387ef5;
+ 			}
+ 			
+ 		}
 
  		.radius-knob{
  			display: block;
  			transition: all 1s ease;
- 			transform: scale(0.25);
  			transform-origin: center;
- 			opacity: 0;
  		}	
  	}
 	

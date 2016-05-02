@@ -6,7 +6,7 @@ var modelsModule = require('./_index.js');
  * @ngInject
 */
 
-modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSettings){
+modelsModule.factory('GMap', function($log, $rootScope, $q, LocationsService, AppSettings){
   $log = $log.getInstance('GMap');
 
   var currentCenter = $rootScope.currentPosition;
@@ -73,52 +73,26 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
     },
 
 
-    plotLocations:function(plotData) {
-      var _map = this;
-      var _plotSettings ={}; 
+    getPixelPosition: function (marker) {
+        var _map = this.map;
+        var scale = Math.pow(2, _map.getZoom());
+        var nw = new google.maps.LatLng(
+            _map.getBounds().getNorthEast().lat(),
+            _map.getBounds().getSouthWest().lng()
+        );
+        var worldCoordinateNW = _map.getProjection().fromLatLngToPoint(nw);
+        var worldCoordinate = _map.getProjection().fromLatLngToPoint(marker.getPosition());
+        var pixelOffset = new google.maps.Point(
+            Math.floor((worldCoordinate.x - worldCoordinateNW.x) * scale),
+            Math.floor((worldCoordinate.y - worldCoordinateNW.y) * scale)
+        );
 
-      angular.extend(_plotSettings,this.mapOptions, plotData);
-      $log.debug('plotLocations within a "{radius}" meter radius of "{center.lat}, {center.lng}"', _plotSettings);
-      
-      // drop marker on current location
-      _map.dropMarker({title:"You Are Here", opacity:1});
-
-      // get all locations around specified area
-      LocationsService
-        .get({radius: _plotSettings.radius, 
-              lat:    _plotSettings.center.lat, 
-              lng:    _plotSettings.center.lng })
-        .then(function(locations) {
-
-          // process locations 
-          angular.forEach(locations, function(location) {
-            $log.debug('plotLocation {name}',location);
-            //get the travelTime forEach location
-            location.setTravelTime().then(function() {
-
-              var locationPin = _map.dropMarker({center: {
-                                    lat: parseFloat(location.lat),
-                                    lng: parseFloat(location.long)
-                                  },
-                                  opacity: 0.5,
-                                  title: location.name
-                                });
-
-              _map.buildInfoWindow(location, locationPin);
-              _map.plotRouteTo(location);
-
-            });///location.setTravelTime
-
-
-          });///end angular.forEach
-
-        });//end LocationsService
-
+        return pixelOffset;
     },
 
     plotRouteTo: function(location){
       $log.debug('plotRouteTo {name}',location);
-
+      var deferred = $q.defer();
       var _map = this;
       var _routeSettings = {
             draggable:           false,
@@ -136,7 +110,7 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
             suppressMarkers:     _routeSettings.suppressMarkers,
             // preserveViewport: true
           }),
-      
+
           request = {
             destination: {lat: parseFloat(location.lat), 
                           lng: parseFloat(location.long)},
@@ -152,11 +126,14 @@ modelsModule.factory('GMap', function($log, $rootScope, LocationsService, AppSet
             
             if (status == google.maps.DirectionsStatus.OK) {
               // Display the route on the map.
+              response.renderer = directionsDisplay;
               directionsDisplay.setDirections(response);
+              deferred.resolve(directionsDisplay);
             }
           });///directiosService.route
 
-          return directionsDisplay;
+          return deferred.promise;
+
 
     },
 
