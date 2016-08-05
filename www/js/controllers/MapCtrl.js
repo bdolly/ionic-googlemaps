@@ -11,7 +11,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
  	  // ViewModel
   	var vm = this;
-    var currentCenter = $rootScope.currentPosition;
+    var currentCenter = $rootScope.currentPosition.coords;
 
     vm.this_radius = 5000;
 
@@ -54,6 +54,31 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               } 
             };
 
+    vm.distance_knob ={
+              options:{
+                readOnly:       true,
+                dynamicOptions: true,
+                displayInput:   false,
+                // scale:          {
+                //   enabled:  true,
+                //   type:     'lines',
+                //   color:    'gray',
+                //   width:    1,
+                //   quantity: 30,
+                //   height:   5,
+                //   spaceWidth: 5
+                // },
+                size:         30,
+                min:          0,
+                max:          80,//hour and a half
+                step:         1,
+                barColor:     '#5BC01E',
+                trackColor:   '#212121',
+                trackWidth:   3,
+                barWidth:     6
+              }
+    };
+
 
 
     vm.slider ={
@@ -66,8 +91,18 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       activeSlide:{}
     };
 
-    console.log(vm.slider)
-
+    
+  vm._metersPerMin  = function( far) {
+      // parse tiem for either a double digit minute format
+      // or the first did
+      var _time = far.text.match(/([0-9][0-9])|(\d)/g);
+      // if hours convert to mins
+      if(_time.length == 2) var mins = +_time[1] + (+_time[0]*60);
+      var _mins = mins || +_time[0];
+      var _distance = far.value; 
+      
+      return _distance/_mins;
+  };
 
 
 
@@ -103,13 +138,18 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           setMarkers(vm.locations_by_distance);  
 
           // set the locations radius and knob value to the closes loction to test
-          vm.this_radius = _.first(vm.locations_by_distance).distancefromlocation+100;
+          vm.this_radius = _.first(vm.locations_by_distance).travelTime.value+100;
           vm.locationsRadius = vm.gmap.setRadiusCircle({radius: vm.this_radius});
           vm.gmap.map.fitBounds(vm.locationsRadius.getBounds());
+
+
+          vm.travelRate = vm._metersPerMin(_.last(vm.locations_by_distance).travelTime);
+          vm.distance_knob.value = Math.ceil(vm.this_radius/vm.travelRate);
           
-          setKnobValue(vm.this_radius, _.first(vm.locations_by_distance).distancefromlocation, _.last(vm.locations_by_distance).distancefromlocation);
+          setKnobValue(vm.this_radius, _.first(vm.locations_by_distance).travelTime.value, _.last(vm.locations_by_distance).travelTime.value);
           vm.locations_loaded = true;
-          
+        
+
           $ionicLoading.hide();
           $ionicSlideBoxDelegate.update();
         });//end .then
@@ -128,7 +168,6 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
         showRouteTo(slider_location);
         fitInMapView(slider_location);
-        vm.knob.value = slider_location.distancefromlocation;
         vm.slider = {
           shown:    true,
           isActive: false,
@@ -152,7 +191,13 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           vm.knob ={
               value:val,
               options:{
-                displayInput: false,
+                displayInput: true,
+                subText: {
+                  enabled: true,
+                  text:    'meter radius',
+                  color:   'black',
+                  font:    'auto'
+                },
                 size:         100,
                 min:          100,
                 max:          max,
@@ -177,7 +222,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
 
     var hideMarkerFor = function(location) {
-      $log.log("hideMarkerFor:{name}", location);
+      // $log.log("hideMarkerFor:{name}", location);
       var hiddenMarker = vm.gmap.markers[location._id];
       hiddenMarker.setOpacity(0);
       hiddenMarker.setClickable(false);
@@ -286,6 +331,11 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
             if(vm.locationsRadius){
               vm.locationsRadius.setRadius(newValue);
               vm.locationsRadius.setVisible(true);  
+
+              // update distance knob
+              vm.distance_knob.value = Math.ceil(newValue/vm.travelRate);
+              vm.distance_knob.options = vm.distance_knob.options;
+
             }
             
             vm.gmap.height = 575;

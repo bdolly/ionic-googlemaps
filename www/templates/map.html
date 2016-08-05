@@ -5,7 +5,33 @@
   >
     
     <nav class="map--slider-metaBar" ng-class="{'is-shown':Map.slider.shown}" >
-        <h4><span class="meta-category">{{Map.slider.meta.category}} </span>{{Map.slider.meta.travelTime.text}}</h4>
+        <h4>
+            <!-- <span class="meta-category">{{Map.slider.meta.category}} </span> -->
+            <i ng-class="{
+                'ion-android-walk;': Map.distance_knob.value < 60,
+                'ion-model-s': Map.distance_knob.value > 60
+
+            }"></i>
+            {{Map.slider.meta.travelTime.text}}.
+            <span ng-if="Map.distance_knob.value < 60">walk away</span></h4>
+    </nav>
+
+    <nav class="map--slider-metaNav"  ng-class="{'shown':Map.knob.value && !Map.slider.shown}">
+        <p class="map--slider-metaNav-city">{{currentPosition.city}}</p>
+        <div class="map--slider-metaNav-controls">
+            <button>{{Map.locations_categories.current}}</button>
+            <div class="map--slider-metaNav-dist">
+                <ui-knob  
+                    class="distance-knob"
+                    value="Map.distance_knob.value" 
+                    options="Map.distance_knob.options"
+                ></ui-knob>
+                <p>{{Map.distance_knob.value}} min. walk</p>   
+            </div>
+             
+
+        </div>
+        
     </nav>
 
     <ion-slide-box 
@@ -40,6 +66,10 @@
 
 
     <div class="map-discovery-cats">
+        <h2 class="map-discovery-city">Discover <br>
+            <span>{{currentPosition.city}}</span>
+        </h2>
+
         <div class="map-cats-wrap">
             <ul class="map-cats-list">
                 <li ng-repeat="category in Map.locations_categories.list" class="map-cat">
@@ -64,7 +94,7 @@
          ng-class='{loaded:Map.locations_loaded}'
     >
         <div class="map-discovery-knob">
-            <span>{{Map.locations_categories.current.toUpperCase()}}</span>
+            <!-- <span>{{Map.locations_categories.current.toUpperCase()}}</span> -->
             <ui-knob  
                 class="radius-knob"
                 value="Map.knob.value" 

@@ -44,12 +44,12 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
       var service = new google.maps.DistanceMatrixService;
        service.getDistanceMatrix({
-         origins:       [{lat: $rootScope.currentPosition.latitude, lng:$rootScope.currentPosition.longitude}],
+         origins:       [{lat: $rootScope.currentPosition.coords.latitude, lng:$rootScope.currentPosition.coords.longitude}],
          destinations:  [{lat: parseFloat(this.lat), lng: parseFloat(this.long)}],
          travelMode:    google.maps.TravelMode.WALKING,
          unitSystem:    google.maps.UnitSystem.IMPERIAL,
-         avoidHighways: false,
-         avoidTolls:    false
+         avoidHighways: true,
+         avoidTolls:    true
        }, function(response, status) {
          	_location.travelTime = response.rows[0].elements[0].duration;
           _location.distance = response.rows[0].elements[0].distance;
