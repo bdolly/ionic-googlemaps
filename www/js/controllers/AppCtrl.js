@@ -12,7 +12,6 @@ function AppCtrl($log, $rootScope, $scope, $ionicModal, $timeout, coordinates, A
   var vm = this;
   // set curent position to rootScope to make globally available 
   $rootScope.currentPosition = coordinates;
-  console.log( coordinates);
   
 
   // Form data for the login modal

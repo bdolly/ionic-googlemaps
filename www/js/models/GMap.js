@@ -7,7 +7,7 @@ var modelsModule = require('./_index.js');
 */
 
 modelsModule.factory('GMap', function($log, $rootScope, $q, LocationsService, AppSettings){
-  $log = $log.getInstance('GMap');
+  $log = $log.getInstance('GMap', false);
 
   var currentCenter = $rootScope.currentPosition.coords;
 

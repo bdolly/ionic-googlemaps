@@ -34,8 +34,8 @@ var enchanceLogger = function( $log ){
     * @api:  private 
     * @returns: Function 
     */
-    var prepareLogFn = function( logFn, className ){
-
+    var prepareLogFn = function( logFn, className, logging ){
+      
       /**
        * Invoke the specified `logFn<` with the supplant functionality...
        * @api: private 
@@ -52,13 +52,15 @@ var enchanceLogger = function( $log ){
             // prepend a timestamp to the original output message
             args[0] = supplant("{0} - {1}{2}", [ now, className, args[0] ]);
 
-        logFn.call( null,  supplant.apply( null, args ) );
+        if(logging)logFn.call( null,  supplant.apply( null, args ) );
       };
 
       // Special... only needed to support angular-mocks expectations
       enhancedLogFn.logs = [ ];
- 
-      return enhancedLogFn;
+      
+    
+        return  enhancedLogFn; 
+      
       
     };
 
@@ -71,17 +73,17 @@ var enchanceLogger = function( $log ){
      * @param: name
      * @returns: Object wrapper facade to $log
      */
-    var getInstance = function( className ){
+    var getInstance = function( className, logging){
       className = ( className !== undefined ) ? className + "::" : "";
 
-      return{
-         log   : prepareLogFn( _$log.log,    className ),
-         info  : prepareLogFn( _$log.info,   className ),
-         warn  : prepareLogFn( _$log.warn,   className ),
-         debug : prepareLogFn( _$log.debug,  className ),
-         // error : prepareLogFn( _$log.error,  className )
-      };
-
+          return{
+           log   : prepareLogFn( _$log.log,   className, logging ),
+           info  : prepareLogFn( _$log.info,  className, logging ),
+           warn  : prepareLogFn( _$log.warn,  className, logging ),
+           debug : prepareLogFn( _$log.debug, className, logging ),
+           // error : prepareLogFn( _$log.error,  className )
+        };  
+    
     };
 
 
