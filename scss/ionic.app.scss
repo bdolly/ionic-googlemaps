@@ -247,7 +247,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		// height: 350px !important;
 		// bottom:300px;
 		// transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-.004,0,0,1,0,0,-60,0,1)!important;
-  //       -webkit-transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-.004,0,0,1,0,0,-60,0,1)!important;
+        // -webkit-transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-.004,0,0,1,0,0,-60,0,1)!important;
 	}
 }
 
@@ -266,7 +266,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 	transition:all 0.25s ease ;
 
-	&.shown{ height: 50px; }
+	&.shown{  height: 55px; }
 
 	.map--slider-metaNav-city{
 		width: 100%;
@@ -283,10 +283,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	.map--slider-metaNav-controls{
 		display: flex;
 		> *{width:100%;}
+		select{text-align-last:center;}
 		p{
 			display: inline-block; 
 			float:left;
 			padding: 5px 0 0 10px;
+		}
+		
+		.map--slider-metaNav-dist{
+			position: relative;
+			i{
+				position: absolute;
+				left:12px;
+				top:5px;
+			}
 		}
 		.distance-knob{
 			float:left;
@@ -324,6 +334,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		&.is-shown{ height: 50px; padding:5px 15px;}
 
 		.meta-category{ text-transform: uppercase; }
+		.ion-ios-arrow-back{
+			float:left;
+			font-size: 22px;
+			margin-top:10px;
+		}
 }
 
 
@@ -476,10 +491,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			transform: scale(1);
 			opacity: 1;
 			span{
-				top:50%; 
+				top:60%; 
 				opacity:1;
 			}
 		} 
+ 	}
+
+ 	&.locationNav{
+ 		.map-discovery-knob{
+ 			width:75px;
+ 			height: 75px;
+			transform: scale(1);
+			opacity: 1;
+			border: 1px solid $positive;
+		}
  	}	
 
  	.map-discovery-knob{
@@ -501,23 +526,50 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  			left:50%;
  			opacity: 0;
  			text-align: center;
+ 			text-align-last:center;
  			font-weight: bold;
  			color:#387ef5;
  			transition: all 0.25s ease 0.25s;
  			transform: translate(-50%, -50%);
-
- 			&:after{
- 				content:'';
- 				width: 100%;
- 				height: 2px;
- 				display: block;
-
+ 			&:before{
+ 				top:-120%;
+				left:50%;
  				position: absolute;
- 				bottom:0;
- 				left:0%;
- 				// transform: translateX(-50%);
- 				background: #387ef5;
+ 				transform: translateX(-50%);
+ 				font-size: 28px;
  			}
+			select{
+				width: 80px;
+				// height: 30px;
+				border:1px solid 0px;
+				border-radius:none;
+				display: block;
+				
+ 				font-weight: bold;
+ 				font-size: 12px;
+ 				text-decoration: underline;
+ 				color:#387ef5;
+ 				text-transform: uppercase;
+ 				padding: 0 0 0 10px;
+				
+ 				option{
+ 					width:100%;
+ 					text-align: center;
+ 				}
+
+			}
+ 			// &:after{
+ 			// 	content:'';
+ 			// 	width: 100%;
+ 			// 	height: 2px;
+ 			// 	display: block;
+
+ 			// 	position: absolute;
+ 			// 	bottom:0;
+ 			// 	left:0%;
+ 			// 	// transform: translateX(-50%);
+ 			// 	background: #387ef5;
+ 			// }
  			
  		}
 
@@ -525,7 +577,109 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  			display: block;
  			transition: all 1s ease;
  			transform-origin: center;
+
  		}	
+ 	}
+
+ 	.map-discovery-location{
+		width: 100px;
+ 		height: 100px;
+ 		display:block;
+ 		position: absolute;
+ 		top:0%;
+ 		left:50%;
+ 		transform: translate(-50%, -60%);
+
+ 		border-radius: 50%;
+ 		margin:0 auto;
+ 		opacity: 1;
+		
+ 		transition: all 0.25s ease;
+ 		// transform: scale(0.25);
+ 		transform-origin: center;
+ 		.ion-ios-navigate{
+ 			font-size:84px;
+ 			display: block;
+ 			color:$balanced;
+ 			position: absolute;
+ 			top:50%;
+ 			left:50%;
+ 			transform:translate(-50%, -50%);
+ 		}
+
+ 		.ion-ios-close{
+ 			position: absolute;
+    		bottom: -15px;
+    		left: 34%;
+    		font-size: 20px;
+ 		}
+ 	}
+
+ 	.map-discovery-location--contact{
+ 		width:0px;
+ 		height: 0px;
+ 		display: block;
+ 		position: absolute;
+ 		top:50%;
+ 		left:50%;
+ 		transform: translate(-50%, -50%);
+ 		
+ 		li{
+ 			position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 0;
+    		height: 0;
+    		transform-origin:center;
+
+    		&:first-child{
+    			transform:rotate(150deg);
+    			i{transform:translate(-50%, -50%) rotate(-150deg);}
+    		}
+    		&:nth-child(2){
+    			transform:rotate(200deg);
+    			i{transform:translate(-50%, -50%) rotate(-196deg);}
+    		}
+    		&:nth-child(3){
+    			transform:rotate(250deg);
+    			i{transform:translate(-50%, -50%) rotate(-252deg);}
+    		}
+    		&:nth-child(4){
+    			transform:rotate(300deg);
+    			i{transform:translate(-50%, -50%) rotate(-313deg);}
+    		}
+
+    		button{
+    			width: 30px;
+ 				height:30px;
+ 				display: block;
+ 				margin-left:25px;
+ 				margin-top:25px;
+
+ 				position: absolute;
+    			top: 0;
+    			left: 0;
+
+    			opacity: 1;
+ 				border-radius:50%;
+				outline:none;
+				border:none;
+ 				background:$dark;
+
+ 				transition: all 0.25s linear 0.75s;
+
+ 				i{
+ 					font-size: 20px;
+ 					color:$stable;
+ 					position: absolute;
+ 					top:50%;
+ 					left:50%;
+ 					transform-origin: center;
+ 				}
+
+    		}
+ 		}
  	}
 	
 }
+

@@ -8,7 +8,7 @@ var controllersModule = require('./_index');
 function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings, GMap, LocationsService, $ionicSlideBoxDelegate) {
 
     $log = $log.getInstance("MapCtrl", true);
-
+    
  	  // ViewModel
   	var vm = this;
     /* =======================================================================
@@ -16,7 +16,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     ========================================================================== */
     var currentCenter = $rootScope.currentPosition.coords;
 
-    vm.this_radius = 5000;
+    
 
     /* Google Map ===================================================== */
     vm.gmap = new GMap({
@@ -62,14 +62,14 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                 readOnly:       true,
                 dynamicOptions: true,
                 displayInput:   false,
-                size:         30,
-                min:          0,
-                max:          80,//hour and a half
-                step:         1,
-                barColor:     '#5BC01E',
-                trackColor:   '#212121',
-                trackWidth:   3,
-                barWidth:     6
+                size:           30,
+                min:            0,
+                max:            80,//hour and a half
+                step:           1,
+                barColor:       '#5BC01E',
+                trackColor:     '#212121',
+                trackWidth:     3,
+                barWidth:       6
               }
     };
 
@@ -100,9 +100,16 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      * @param { Object } category - category object of Loactions to load
      */
     vm.load_category = function(category) {
+
       $log.log('load_category: {name}',category);
       
+      // reset locations, markers, and radius
       vm.gmap.map.setOptions({styles:null});
+      vm.gmap.markers.map(_clearFromMap);
+      vm.gmap.markers = [];
+      vm.locations_by_distance =[];
+      vm.this_radius = 5000;
+      if (vm.locationsRadius) vm.locationsRadius.setVisible(false);
 
       // show ionic loader
       $ionicLoading.show({
@@ -115,7 +122,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       LocationsService
         .get({
               category: category.name,
-              radius:   vm.this_radius, 
+              radius:   5000, 
               lat:      currentCenter.latitude, 
               lng:      currentCenter.longitude
             })
@@ -123,7 +130,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           vm.locations_categories.distance = 0;
           // vm.locations_loaded = true;
 
-          vm.locations_categories.current = category.name;
+          vm.locations_categories.current = category;
 
           // sort locations by distnace 
           vm.locations_by_distance = _.sortBy(locations, 'distancefromlocation');
@@ -147,6 +154,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           // hide the loader once all is loaded
           $ionicLoading.hide();
           $ionicSlideBoxDelegate.update();
+          
         });//end .then
 
 
@@ -174,32 +182,25 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     };
 
 
+    vm.metersToMiles = function(meters) {
+      return meters*0.000621371;
+    }
 
-    $scope.slideHasChanged = function(indx) {
-        $log.log("ion-slide-box:slideHasChanged:"+indx);
-        
-        var slider_location = vm.locations_by_distance[indx];
-        //set active slide
-        vm.locations_by_distance.map(function(location) { location.isActive = false; return location;});
-        slider_location.isActive = true;
 
-        _showRouteTo(slider_location);
-        fitInMapView(slider_location);
-        vm.slider = {
-          shown:    true,
-          isActive: false,
-          meta:     {
-            category:     slider_location.catagorylevel1,
-            travelTime:   slider_location.travelTime,
-            neighborhood: slider_location.neighborhood
-          }
-        };
+    vm.showDiscoveryMap = function () {
+       vm.gmap.height = 575;
+            vm.gmap.locationFocused = false;
+            vm.gmap.routes.map(_clearFromMap);
+            if(vm.locations_by_distance.length) vm.gmap.map.setOptions({styles: null});
 
-      };//  $scope.slideHasChanged
+            // hides slider
+            vm.slider.shown = false;
+      
+    }
 
 
 
-    
+  
 
 
   /* =======================================================================
@@ -220,13 +221,13 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           vm.knob ={
               value:val,
               options:{
-                displayInput: true,
-                subText: {
-                  enabled: true,
-                  text:    'meter radius',
-                  color:   'black',
-                  font:    'auto'
-                },
+                displayInput: false,
+                // subText: {
+                //   enabled: true,
+                //   text:    'meter radius',
+                //   color:   'black',
+                //   font:    'auto'
+                // },
                 size:         100,
                 min:          100,
                 max:          max,
@@ -248,8 +249,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      * @param {Object} loaction - location object model
      */
     var _showMarkerFor = function(location) {
-      $log.log("_showMarkerFor:{name}", location);
-      var shownMarker = vm.gmap.markers[location._id];
+      // $log.log("_showMarkerFor:{name}", location);
+      // var shownMarker = vm.gmap.markers[location._id];
+      var shownMarker = _.where(vm.gmap.markers, {title: location.name})[0];
       shownMarker.setOpacity(1);
       shownMarker.setClickable(true);
     }//_showMarkerFor
@@ -262,7 +264,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      */
     var _hideMarkerFor = function(location) {
       // $log.log("_hideMarkerFor:{name}", location);
-      var hiddenMarker = vm.gmap.markers[location._id];
+      var hiddenMarker = _.where(vm.gmap.markers, {title: location.name})[0];
       hiddenMarker.setOpacity(0);
       hiddenMarker.setClickable(false);
     }//_hideMarkerFor
@@ -291,7 +293,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                      $scope.$broadcast('marker:clicked', locate);
                   });
 
-                vm.gmap.markers[locate._id] = marker;
+                vm.gmap.markers.push(marker);
     
           });
 
@@ -305,8 +307,8 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      * @param { Object } marker  -  google map marker object
      */
     var _clearFromMap = function(marker) {
-      $log.log('_clearFromMap');
-      return marker.setMap(null);
+      $log.log('_clearFromMap::Marker:{title}', marker);
+       marker.setMap(null);
     }//_clearFromMap
 
 
@@ -379,11 +381,12 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
 
 
-    /* =======================================================================
-      $scope events and watchers 
-  ========================================================================== */
-    
 
+
+  /* =======================================================================
+      $scope events and watchers 
+   ========================================================================== */
+  
   /**
    * On Locations Slider Slide Change update to show route to new Location from slide
    */
@@ -429,12 +432,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
             }
             
-            vm.gmap.height = 575;
-            vm.gmap.locationFocused = false;
-            vm.gmap.routes.map(_clearFromMap);
-            if(vm.locations_by_distance.length) vm.gmap.map.setOptions({styles: null});
-
-            vm.slider.shown = false;
+           vm.showDiscoveryMap();
             
 
             if(vm.locationsRadius) _fitInMapView();

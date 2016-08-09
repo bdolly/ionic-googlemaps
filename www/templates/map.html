@@ -5,34 +5,42 @@
   >
     
     <nav class="map--slider-metaBar" ng-class="{'is-shown':Map.slider.shown}" >
+        <i class="ion-ios-arrow-back" ng-click="Map.showDiscoveryMap()"></i>
         <h4>
-            <!-- <span class="meta-category">{{Map.slider.meta.category}} </span> -->
-            <i ng-class="{
-                'ion-android-walk;': Map.distance_knob.value < 60,
-                'ion-model-s': Map.distance_knob.value > 60
-
-            }"></i>
+            <span class="meta-category">{{Map.slider.meta.category}} | </span>
+            <i ng-class="{ 'ion-android-walk;': Map.distance_knob.value < 60 }"></i>
             {{Map.slider.meta.travelTime.text}}.
-            <span ng-if="Map.distance_knob.value < 60">walk away</span></h4>
+            <span ng-if="Map.distance_knob.value < 60">walk</span></h4>
     </nav>
 
     <nav class="map--slider-metaNav"  ng-class="{'shown':Map.knob.value && !Map.slider.shown}">
         <p class="map--slider-metaNav-city">{{currentPosition.city}}</p>
+
         <div class="map--slider-metaNav-controls">
-            <button>{{Map.locations_categories.current}}</button>
+            <!-- <button>{{Map.locations_categories.current}}</button> -->
+
+            <select name="repeatSelect" 
+                    id="repeatSelect" 
+                    ng-model="Map.locations_categories.current"
+                    ng-change="Map.load_category(Map.locations_categories.current)"
+                    ng-options="category.name for category in Map.locations_categories.list">
+            </select>
+            
             <div class="map--slider-metaNav-dist">
                 <ui-knob  
                     class="distance-knob"
                     value="Map.distance_knob.value" 
                     options="Map.distance_knob.options"
                 ></ui-knob>
-                <p>{{Map.distance_knob.value}} min. walk</p>   
-            </div>
-             
-
+                <i
+                ng-class="{'ion-android-walk': Map.distance_knob.value < 60 }"></i>
+                <p>{{Map.distance_knob.value}} min. </p>   
+            </div> 
+            <p>{{ Map.metersToMiles(Map.knob.value).toFixed(2) }} mi.</p>
         </div>
         
     </nav>
+
 
     <ion-slide-box 
             class="map--slider" 
@@ -91,16 +99,55 @@
 
 
     <nav class="map-discovery-nav" 
-         ng-class='{loaded:Map.locations_loaded}'
+         ng-class='{
+            loaded:Map.locations_loaded,
+            locationNav: Map.slider.shown
+        }'
     >
-        <div class="map-discovery-knob">
-            <!-- <span>{{Map.locations_categories.current.toUpperCase()}}</span> -->
+
+        <div
+            ng-show="!Map.slider.shown" 
+            class="map-discovery-knob">
+            
+            <span ng-class="{
+                'ion-beer': Map.locations_categories.current.name === 'Drink',
+                'ion-pizza': Map.locations_categories.current.name === 'Food'
+            }">
+                <select name="repeatSelect" 
+                        id="repeatSelect" 
+                        ng-model="Map.locations_categories.current"
+                        ng-change="Map.load_category(Map.locations_categories.current)"
+                        ng-options="category.name for category in Map.locations_categories.list">
+                </select>
+            </span>
+
             <ui-knob  
                 class="radius-knob"
                 value="Map.knob.value" 
                 options="Map.knob.options"
                 style="width:{{Map.knob.options.size}}px;"
             ></ui-knob>
+            
+        </div>
+
+
+        <div 
+            ng-show="Map.slider.shown"
+            class="map-discovery-location"
+        >
+            <i class="ion-ios-navigate"
+                ng-click="Map.load_category('drink')"></i>
+
+            <button class="ion-ios-close" 
+                    ng-click="Map.showDiscoveryMap()">
+            </button>
+
+            <ul class="map-discovery-location--contact">
+                <li><button ><i class="ion-ios-telephone"></i></button></li>
+                <li><button ><i class="ion-person-add"></i></button></li>
+                <li><button ><i class="ion-pin"></i></button></li>
+                <li><button ><i class="ion-android-share-alt"></i></button></li>
+            </ul>
         </div>
     	
     </nav>

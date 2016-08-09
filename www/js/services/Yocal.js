@@ -18,7 +18,7 @@ function Yocal($q, $http, AppSettings, $log) {
     var deferred = $q.defer();
 
     // listByDistanceCat/Food/8000/39.937893/-75.1689347
-   $http.get(AppSettings.yocalAPI.base+'/listByDistanceCat/'+getData.category+'/'+getData.radius+'/'+getData.lat+'/'+getData.lng)
+   $http.get(AppSettings.yocalAPI.base+'listByDistanceCat/'+getData.category+'/'+getData.radius+'/'+getData.lat+'/'+getData.lng)
         .success(function(data) {
           $log.debug('found {length} '+getData.category+' spots within '+getData.radius+' meters of '+getData.lat+','+getData.lng, data.locations);
           data.radius = getData.radius;

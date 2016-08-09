@@ -6,7 +6,7 @@ var modelsModule = require('./_index.js');
  * @ngInject
  */
 modelsModule.factory('Location', function($rootScope, $log, $q ) {
-  $log = $log.getInstance('Location');
+  $log = $log.getInstance('Location', false);
 
   function Location(LocationData){
     angular.extend(this, LocationData);
@@ -37,7 +37,7 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
 
   Location.prototype.setTravelTime = function() {
-      $log.debug('setTravelTime {name}', this);
+      $log.warn('setTravelTime {name}', this);
       
       var _location = this;
       var deferred = $q.defer();
