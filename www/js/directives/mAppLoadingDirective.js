@@ -6,7 +6,7 @@ var directivesModule = require('./_index.js');
  * @ngInject
  */
 function mAppLoading($log, $animate){
-  $log = $log.getInstance( "mAppLoading" );
+  $log = $log.getInstance("mAppLoadingDirective", false);
   
 
   // Runs during compile

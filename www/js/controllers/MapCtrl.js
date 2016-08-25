@@ -5,11 +5,27 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings, GMap, LocationsService, $ionicSlideBoxDelegate) {
+function MapCtrl($rootScope,
+                 $scope,
+                 $timeout,
+                 $log,
+                 $ionicLoading,
+                 AppSettings,
+                 GMap,
+                 LocationsService,
+                 $ionicSlideBoxDelegate,
+                 FacebookService) {
 
     $log = $log.getInstance("MapCtrl", true);
-    
- 	  // ViewModel
+      
+
+    FacebookService.getMyLastName() 
+     .then(function(response) {
+       console.log(response);
+     }
+   );
+
+   	// ViewModel
   	var vm = this;
     /* =======================================================================
       VM defaults   
@@ -49,6 +65,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               {name: 'Food'}
             ]
     };
+    vm.discoverCatsExpanded = false;
     
 
     /* UI Knobs ========================================= */
@@ -108,8 +125,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       vm.gmap.markers.map(_clearFromMap);
       vm.gmap.markers = [];
       vm.locations_by_distance =[];
+
       vm.this_radius = 5000;
-      if (vm.locationsRadius) vm.locationsRadius.setVisible(false);
+      
 
       // show ionic loader
       $ionicLoading.show({
@@ -127,7 +145,10 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               lng:      currentCenter.longitude
             })
         .then(function(locations) {
+          if(vm.locationsRadius) vm.locationsRadius.setVisible(false);
+
           vm.locations_categories.distance = 0;
+          vm.discoverCatsExpanded = false;
           // vm.locations_loaded = true;
 
           vm.locations_categories.current = category;
@@ -186,15 +207,16 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       return meters*0.000621371;
     }
 
+    
 
     vm.showDiscoveryMap = function () {
        vm.gmap.height = 575;
-            vm.gmap.locationFocused = false;
-            vm.gmap.routes.map(_clearFromMap);
-            if(vm.locations_by_distance.length) vm.gmap.map.setOptions({styles: null});
+       vm.gmap.locationFocused = false;
+       vm.gmap.routes.map(_clearFromMap);
+        if(vm.locations_by_distance.length) vm.gmap.map.setOptions({styles: null});
 
-            // hides slider
-            vm.slider.shown = false;
+      // hides slider
+      vm.slider.shown = false;
       
     }
 
@@ -254,6 +276,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       var shownMarker = _.where(vm.gmap.markers, {title: location.name})[0];
       shownMarker.setOpacity(1);
       shownMarker.setClickable(true);
+      return shownMarker;
     }//_showMarkerFor
 
 
@@ -280,8 +303,8 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
       locations.map(function(locate){
             var marker = vm.gmap.dropMarker({
                         center: {
-                            lat: parseFloat(locate.lat),
-                            lng: parseFloat(locate.long)
+                          lat: parseFloat(locate.lat),
+                          lng: parseFloat(locate.long)
                         },
                         title:     locate.name,
                         map:       vm.gmap.map,
@@ -317,7 +340,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      *  
      * @param { Object } location  -  Location Model Object
      */
-    var _showRouteTo = function(location) {
+    var _showRouteTo = function(location, cb) {
       $log.log('_showRouteTo;{name}', location);
       // clear all routes
       vm.gmap.routes.map(_clearFromMap);
@@ -339,6 +362,17 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                             //   vm.gmap.map.panBy(0, Math.abs(panY) );
                             // },450);
                             
+                            if(_.isFunction(cb)){
+
+                              $timeout(function(){
+                                // cb(location);
+                                // vm.gmap.height = 350;
+                                // _fitInMapView(location);
+                              
+                              }, 1500);
+
+                            } 
+
                           });
     }// _showRouteTo
     
@@ -353,7 +387,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      
      */
     var _fitInMapView = function(location) {
-      if(location) vm.locationsRadius.setRadius(location.distancefromlocation);
+      if(location) vm.locationsRadius.setRadius(location.travelTime.value);
       // Get the bounds
       var circleBounds = vm.locationsRadius.getBounds();
       var mapBounds = vm.gmap.map.getBounds();
@@ -463,7 +497,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           vm.gmap.map.setOptions({styles: AppSettings.GMAP_DEFAULT.THEME.light});
 
           vm.gmap.locationFocused = true;
-          vm.gmap.height = 350;
+          
           vm.slider = {
             shown: true,
             meta:{
@@ -475,9 +509,11 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
           $ionicSlideBoxDelegate.slide(_.indexOf(vm.locations_by_distance, marker));
 
-          _showRouteTo(marker);
-          _fitInMapView();
-
+          _showRouteTo(marker, function(location) {
+            // vm.gmap.height = 350;
+            // _fitInMapView(location);
+          });
+          
       });
     });// $scope.$on "marker:clicked"
       

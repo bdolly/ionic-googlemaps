@@ -43,7 +43,7 @@ angular.element(document).ready(function() {
 
 
   setTimeout(function() {
-    angular.bootstrap(document, ['app']);   
+    angular.bootstrap(document, ['app']);  
   }, (1000));
   
 

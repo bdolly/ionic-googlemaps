@@ -125,6 +125,7 @@ modelsModule.factory('GMap', function($log, $rootScope, $q, LocationsService, Ap
           directionsService.route(request, function(response, status) {
             
             if (status == google.maps.DirectionsStatus.OK) {
+              console.log(response);
               // Display the route on the map.
               response.renderer = directionsDisplay;
               directionsDisplay.setDirections(response);
