@@ -58,7 +58,12 @@
                     <address> <i class="ion-ios-location"></i>{{location.adress}}</address>
 
 					<div class="card--location-header-meta">
-						<i class="ion-android-time"> <small>0 - 0</small></i>
+						<i class="ion-android-time"
+                            ng-class="{
+                            'is-open': location.opening_hours.open_now,
+                            'is-closed': !location.opening_hours.open_now
+                            }"
+                        > <small>0 - 0</small></i>
                         <div class="location-expense">
                             <span style="width:{{location.travelTime.value/100}}%"class="location-expense-indicator"> <i class="ion-cash"> </i></span>
                             <i class="ion-cash location-expense-base"> </i>

@@ -96,6 +96,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
  		.card--location-header-meta{ 
  			display:flex;
+
  			.location-expense{
  				display: block;
  				width:21%;
@@ -438,7 +439,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			float:left;
 			background:rgba(#fff, 0.5);
 			padding:0 3px;
-			&:before{color:green;}
+			&.is-open{
+				color:green;
+				&:before{color:green;}
+			}
+			&.is-closed{
+				color:red;
+				&:before{color:red;}
+			}
+			
 			small{margin-top:-2px;}
 		}
 

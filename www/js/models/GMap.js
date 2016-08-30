@@ -161,6 +161,12 @@ modelsModule.factory('GMap', function($log, $rootScope, $q, LocationsService, Ap
           });
 
       return locationsCircle;
+    },
+
+    placesService: function() {
+      var _service = new google.maps.places.PlacesService(this.map);
+      return _service;
+
     }
 
   };

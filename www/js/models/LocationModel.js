@@ -5,17 +5,17 @@ var modelsModule = require('./_index.js');
 /**
  * @ngInject
  */
-modelsModule.factory('Location', function($rootScope, $log, $q ) {
-  $log = $log.getInstance('Location', false);
+modelsModule.factory('Location', function($rootScope, $log, $q) {
+  $log = $log.getInstance('Location', true);
 
   function Location(LocationData){
     angular.extend(this, LocationData);
-    $log.debug('{name}', this);
+    $log.log('{name}', this);
   }
 
 
   Location.responseTransformer = function (responseData) {
-    $log.debug('resoponseTransformer {length}', responseData.locations);
+    $log.log('resoponseTransformer for {length} items', responseData.locations);
     
     if(responseData.locations){
       
@@ -24,11 +24,20 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
       responseData.locations
               .map(function(data){
                 var location = new Location(data);
+                location.setGooglePlaceID().then(function(place) {
+                  location.setGooglePlaceDetails();
+                });
+
+                
+
                 populated_locations.push(location.setTravelTime());
+                
               });
 
         return populated_locations;
     }
+
+
 
       return responseData.map(Location.build);  
 
@@ -37,7 +46,7 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
 
 
   Location.prototype.setTravelTime = function() {
-      $log.warn('setTravelTime {name}', this);
+      $log.log('setTravelTime:{name}', this);
       
       var _location = this;
       var deferred = $q.defer();
@@ -64,8 +73,55 @@ modelsModule.factory('Location', function($rootScope, $log, $q ) {
   }
 
 
+  Location.prototype.setGooglePlaceID = function() {
+
+    $log.log('setGooglePlaceID:{name}', this);
+
+      var _location = this,
+          deferred = $q.defer(),
+          PlacesService = new google.maps.places.PlacesService($rootScope.gmap.map),
+          _searchQuery = {query:_location.name, 
+                          location: new google.maps.LatLng(parseFloat(_location.lat), parseFloat(_location.long)),
+                          radius:500};
+
+
+          PlacesService.textSearch(_searchQuery, 
+                    function (results, status) {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            //TODO: make sure this is the correct result
+                            _location.googlePlaceId = results[0].place_id;
+                            deferred.resolve(_location);
+                        }
+          });
+
+
+      return deferred.promise;
+    
+  };
+
+
+  Location.prototype.setGooglePlaceDetails = function() {
+    $log.log('setGooglePlaceDetails:{name}', this);
+    var _location = this,
+         deferred = $q.defer(),
+         PlacesService = new google.maps.places.PlacesService($rootScope.gmap.map);
+         
+        PlacesService.getDetails( {placeId:_location.googlePlaceId}, 
+                    function(place, status) {
+                      console.log(status);
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                          console.log(place);
+                          angular.extend(_location, place);
+                          deferred.resolve(_location);
+                        }
+                 });
+
+        return deferred.promise;
+  };
+
+
   Location.build = function(lData) {
-    $log.debug('build {name}', lData);
+    $log.log('build:{name}', lData);
     
     return new Location(lData);
   }

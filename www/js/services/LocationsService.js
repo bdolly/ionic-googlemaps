@@ -18,7 +18,7 @@ function LocationsService($log, Yocal, Location, $q) {
     return Yocal.get(getData)
                 .then(function(data){
                   // only return locations when they have ALL
-                  // been populated with travelTimes
+                  // been populated with data from async services
                   return $q.all(Location.responseTransformer(data));
                 });
                 

@@ -24,7 +24,8 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                         radius: vm.this_radius, 
                         styles: AppSettings.GMAP_DEFAULT.THEME.light
                       });    
-
+    $rootScope.gmap = vm.gmap;
+    
     vm.gmap.height = 575,
     vm.gmap.locationFocused = false;
     vm.gmap.markers = [];
@@ -36,7 +37,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                        lng: currentCenter.longitude },
               opacity:1,
             });
-    
+
+
+
     
     /* Locaitons Collections and Meta ========================================= */
     vm.locations_by_distance = [];
@@ -277,20 +280,22 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      * @param { Array } locations  -  collection of Location Model Objects
      */
     var _setMarkers = function(locations) {
-      locations.map(function(locate){
+      locations.map(function(localle){
+
+
             var marker = vm.gmap.dropMarker({
                         center: {
-                            lat: parseFloat(locate.lat),
-                            lng: parseFloat(locate.long)
-                        },
-                        title:     locate.name,
+                            lat: parseFloat(localle.lat),
+                            lng: parseFloat(localle.long)},
+
+                                                title:     localle.name,
                         map:       vm.gmap.map,
                         opacity:   0,
                         clickable: false
                       });
 
                   marker.addListener('click',function(){
-                     $scope.$broadcast('marker:clicked', locate);
+                     $scope.$broadcast('marker:clicked', localle);
                   });
 
                 vm.gmap.markers.push(marker);
