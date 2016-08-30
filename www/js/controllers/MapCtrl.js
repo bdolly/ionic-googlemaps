@@ -2,6 +2,7 @@
 
 var controllersModule = require('./_index');
 
+
 /**
  * @ngInject
  */
@@ -16,7 +17,6 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     ========================================================================== */
     var currentCenter = $rootScope.currentPosition.coords;
 
-    
 
     /* Google Map ===================================================== */
     vm.gmap = new GMap({
@@ -34,11 +34,13 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     vm.gmap.dropMarker({
               map:    vm.gmap.map,
               center: {lat: currentCenter.latitude, 
-                       lng: currentCenter.longitude },
+                       lng: currentCenter.longitude 
+                      },
               opacity:1,
             });
 
 
+    
 
     
     /* Locaitons Collections and Meta ========================================= */
@@ -52,6 +54,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               {name: 'Food'}
             ]
     };
+    vm.discoverCatsExpanded = false;
     
 
     /* UI Knobs ========================================= */
@@ -130,13 +133,17 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               lng:      currentCenter.longitude
             })
         .then(function(locations) {
+          
+          console.log(locations);
+
           vm.locations_categories.distance = 0;
           // vm.locations_loaded = true;
-
+          vm.discoverCatsExpanded = false;
           vm.locations_categories.current = category;
 
           // sort locations by distnace 
           vm.locations_by_distance = _.sortBy(locations, 'distancefromlocation');
+           
 
           // set all markers on map
           _setMarkers(vm.locations_by_distance);  
@@ -285,10 +292,10 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
             var marker = vm.gmap.dropMarker({
                         center: {
-                            lat: parseFloat(localle.lat),
-                            lng: parseFloat(localle.long)},
-
-                                                title:     localle.name,
+                          lat: parseFloat(localle.lat),
+                          lng: parseFloat(localle.long)
+                        },
+                        title:     localle.name,
                         map:       vm.gmap.map,
                         opacity:   0,
                         clickable: false

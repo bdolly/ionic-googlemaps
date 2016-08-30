@@ -2,6 +2,7 @@
 
 var modelsModule = require('./_index.js');
 
+
 /**
  * @ngInject
  */
@@ -19,37 +20,36 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
     
     if(responseData.locations){
       
-      var populated_locations = [];
-
-      responseData.locations
-              .map(function(data){
-                var location = new Location(data);
-                location.setGooglePlaceID().then(function(place) {
-                  location.setGooglePlaceDetails();
-                });
-
-                
-
-                populated_locations.push(location.setTravelTime());
-                
-              });
-
-        return populated_locations;
+      // transfrom the response data into an array of promises 
+      // to be fullfilled wiht async Loaction methods 
+      return responseData.locations.map(function(data) {
+          // create a new loaction 
+          // and perform sequential async functions
+          return new Location(data)
+                      .setTravelTime()
+                      .then(function(_l) {
+                          return _l.setGooglePlaceDetails();
+                      })
+                      .then(function(_LData) {
+                        var dfd = $q.defer(); 
+                        dfd.resolve(_LData);
+                        return dfd.promise;
+                      });
+        
+      });
     }
 
-
-
-      return responseData.map(Location.build);  
-
-    
+      // return responseData.map(Location.build);      
   }
+
+
 
 
   Location.prototype.setTravelTime = function() {
       $log.log('setTravelTime:{name}', this);
       
       var _location = this;
-      var deferred = $q.defer();
+      var deferred  = $q.defer();
 
       var service = new google.maps.DistanceMatrixService;
        service.getDistanceMatrix({
@@ -61,7 +61,7 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
          avoidTolls:    true
        }, function(response, status) {
          	_location.travelTime = response.rows[0].elements[0].duration;
-          _location.distance = response.rows[0].elements[0].distance;
+          _location.distance   = response.rows[0].elements[0].distance;
          	deferred.resolve(_location);
          // $log.debug("{name} - {travelTime}", _location);
           
@@ -77,12 +77,12 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
 
     $log.log('setGooglePlaceID:{name}', this);
 
-      var _location = this,
-          deferred = $q.defer(),
+      var _location     = this,
+          deferred      = $q.defer(),
           PlacesService = new google.maps.places.PlacesService($rootScope.gmap.map),
-          _searchQuery = {query:_location.name, 
+          _searchQuery  = {query:   _location.name, 
                           location: new google.maps.LatLng(parseFloat(_location.lat), parseFloat(_location.long)),
-                          radius:500};
+                          radius:   500};
 
 
           PlacesService.textSearch(_searchQuery, 
@@ -102,19 +102,21 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
 
   Location.prototype.setGooglePlaceDetails = function() {
     $log.log('setGooglePlaceDetails:{name}', this);
-    var _location = this,
-         deferred = $q.defer(),
+    var _location      = this,
+         deferred      = $q.defer(),
          PlacesService = new google.maps.places.PlacesService($rootScope.gmap.map);
-         
-        PlacesService.getDetails( {placeId:_location.googlePlaceId}, 
+
+         this.setGooglePlaceID().then(function(_place) {
+
+          PlacesService.getDetails( {placeId:_place.googlePlaceId}, 
                     function(place, status) {
-                      console.log(status);
                         if (status == google.maps.places.PlacesServiceStatus.OK) {
-                          console.log(place);
-                          angular.extend(_location, place);
-                          deferred.resolve(_location);
+                          deferred.resolve(angular.extend(_location, place));
                         }
                  });
+           
+         });
+        
 
         return deferred.promise;
   };

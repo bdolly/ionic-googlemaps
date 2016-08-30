@@ -96,7 +96,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
  		.card--location-header-meta{ 
  			display:flex;
-
  			.location-expense{
  				display: block;
  				width:21%;
@@ -196,7 +195,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     				height: 0;
     				transform-origin:center;
 
-
     				&:first-child{transform:rotate(120deg);}
     				&:nth-child(2){transform:rotate(180deg);}
     				&:nth-child(3){transform:rotate(240deg);}
@@ -293,10 +291,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		
 		.map--slider-metaNav-dist{
 			position: relative;
+			padding-top:2px;
 			i{
 				position: absolute;
 				left:12px;
-				top:5px;
+				top:7px;
 			}
 		}
 		.distance-knob{
@@ -439,10 +438,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			float:left;
 			background:rgba(#fff, 0.5);
 			padding:0 3px;
+			
 			&.is-open{
 				color:green;
 				&:before{color:green;}
 			}
+
 			&.is-closed{
 				color:red;
 				&:before{color:red;}
@@ -514,7 +515,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			opacity: 1;
 			border: 1px solid $positive;
 		}
+
+		
  	}	
+
+
 
  	.map-discovery-knob{
  		width: 100px;
@@ -527,6 +532,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  		transition: all 0.25s ease;
  		transform: scale(0.25);
  		transform-origin: center;
+
+ 		&.cats-expanded{
+ 			background: $stable;
+ 		}
 
  		span{
  			display: inline-block;
@@ -547,26 +556,35 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
  				transform: translateX(-50%);
  				font-size: 28px;
  			}
-			select{
-				width: 80px;
-				// height: 30px;
-				border:1px solid 0px;
-				border-radius:none;
-				display: block;
-				
+ 			h4{
  				font-weight: bold;
  				font-size: 12px;
  				text-decoration: underline;
  				color:#387ef5;
  				text-transform: uppercase;
- 				padding: 0 0 0 10px;
+ 				margin:5px 0 0 0;
+ 				padding:0;
+ 			}
+			// select{
+			// 	width: 80px;
+			// 	// height: 30px;
+			// 	border:1px solid 0px;
+			// 	border-radius:none;
+			// 	display: block;
 				
- 				option{
- 					width:100%;
- 					text-align: center;
- 				}
+ 		// 		font-weight: bold;
+ 		// 		font-size: 12px;
+ 		// 		text-decoration: underline;
+ 		// 		color:#387ef5;
+ 		// 		text-transform: uppercase;
+ 		// 		padding: 0 0 0 10px;
+				
+ 		// 		option{
+ 		// 			width:100%;
+ 		// 			text-align: center;
+ 		// 		}
 
-			}
+			// }
  			// &:after{
  			// 	content:'';
  			// 	width: 100%;
@@ -589,6 +607,64 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
  		}	
  	}
+
+ 	.map-discovery-knob--cats{
+ 		width: 0px;
+    	height: 0px;
+    	display: block;
+    	position: absolute;
+    	top: 50%;
+    	left: 50%;
+    	opacity: 0;
+    	transform: translate(-50%, -50%) scale(0.5);
+    	transition: all 0.125s ease;
+	
+
+    	&.active{
+    		opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+			li button{
+				width:50px;
+ 				height:50px;
+ 				margin-left:30px;
+ 				margin-top:30px;
+			}
+    	}
+	
+    	
+    	li{
+    		position: absolute;
+    		top:0;
+    		left:0;
+    		width: 0;
+    		height: 0;
+    		transform-origin: center;
+    		&:nth-child(3){transform:rotate(153deg);}
+    		&:nth-child(2){transform:rotate(226deg);}
+    		&:first-child{transform:rotate(300deg);}
+
+    	}
+    	
+
+    		button{
+    			width:25px;
+ 				height:25px;
+ 				display: block;
+ 				position: absolute;
+    			top: 0;
+    			left: 0;
+
+    			opacity: 1;
+ 				border-radius:50%;
+ 				background:$positive;
+ 				color:$light;
+    		}
+
+
+
+ 	}
+
+
 
  	.map-discovery-location{
 		width: 100px;

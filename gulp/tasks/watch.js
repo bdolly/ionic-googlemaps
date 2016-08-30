@@ -4,7 +4,7 @@ var config        = require('../config');
 var gulp          = require('gulp');
 var shelljs       = require('shelljs/global');
 
-gulp.task('watch',function() {
+gulp.task('watch',['browserify'],function() {
 
   // Scripts are automatically watched and rebundled by Watchify inside Browserify task
   // gulp.watch(config.scripts.src, ['browserify']);
