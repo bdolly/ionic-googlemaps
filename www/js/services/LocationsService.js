@@ -1,12 +1,13 @@
 'use strict';
 
 var servicesModule = require('./_index.js');
-var LocationsMockDATA = require('../DATA/Locations.json');
+
+
 
 /**
  * @ngInject
  */
-function LocationsService($log, Yocal, Location, $q) {
+function LocationsService($log, Yocal, Location, $q, $timeout) {
   $log = $log.getInstance("LocationsServiceService");
 
   var service = {};
@@ -18,15 +19,14 @@ function LocationsService($log, Yocal, Location, $q) {
 
     return Yocal.get(getData)
                 .then(function(data){
-
                   // only return locations when they have ALL
                   // been populated with data from async services
                   return $q.all(Location.responseTransformer(data));
-                  // return LocationsMockDATA;
                 });
-                
-
+    
   };
+
+
 
   service.all = function( getData ) {
 

@@ -6,7 +6,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings, GMap, LocationsService, $ionicSlideBoxDelegate) {
+function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings, GMap, LocationsService, $ionicSlideBoxDelegate, $ionicGesture) {
 
     $log = $log.getInstance("MapCtrl", true);
     
@@ -17,6 +17,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     ========================================================================== */
     var currentCenter = $rootScope.currentPosition.coords;
 
+    $rootScope.activeLocation = null;
 
     /* Google Map ===================================================== */
     vm.gmap = new GMap({
@@ -27,9 +28,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
     $rootScope.gmap = vm.gmap;
     
     vm.gmap.height = 575,
-    vm.gmap.locationFocused = false;
     vm.gmap.markers = [];
-    vm.gmap.routes = [];  
+    vm.gmap.routes = []; 
+
      // drop marker on current position
     vm.gmap.dropMarker({
               map:    vm.gmap.map,
@@ -82,8 +83,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
     /* Lcoations card slider ========================================= */
     vm.slider ={
-      shown:   false,
-      meta:{
+      shown:      false,
+      detailView: false,
+      meta:       {
         category:     '',
         travelTime:   '',
         neighborhood: ''
@@ -133,8 +135,6 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
               lng:      currentCenter.longitude
             })
         .then(function(locations) {
-          
-          console.log(locations);
 
           vm.locations_categories.distance = 0;
           // vm.locations_loaded = true;
@@ -164,6 +164,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
           // hide the loader once all is loaded
           $ionicLoading.hide();
           $ionicSlideBoxDelegate.update();
+
           
         });//end .then
 
@@ -199,7 +200,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
     vm.showDiscoveryMap = function () {
        vm.gmap.height = 575;
-            vm.gmap.locationFocused = false;
+            
             vm.gmap.routes.map(_clearFromMap);
             if(vm.locations_by_distance.length) vm.gmap.map.setOptions({styles: null});
 
@@ -298,7 +299,8 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
                         title:     localle.name,
                         map:       vm.gmap.map,
                         opacity:   0,
-                        clickable: false
+                        clickable: false,
+                        // icon:      localle.icon
                       });
 
                   marker.addListener('click',function(){
@@ -311,6 +313,23 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
         // return vm.markers;
     };//_setMarkers
+
+
+    var _setupSlideDrag = function(dir, indx) {
+      
+        $ionicGesture.on('drag'+dir, 
+              function () { 
+                $scope.$apply(function() {
+                  vm.slider.detailView = dir =='down'? true : false;
+                });
+
+              }, 
+              angular.element(
+                  document.querySelectorAll('.map--slider-location')[indx]
+                )
+            );
+    }
+
 
 
     /**
@@ -331,6 +350,8 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
      */
     var _showRouteTo = function(location) {
       $log.log('_showRouteTo;{name}', location);
+      $rootScope.activeLocation = location;
+
       // clear all routes
       vm.gmap.routes.map(_clearFromMap);
       vm.locationsRadius.setVisible(false);
@@ -404,7 +425,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
    */
     $scope.slideHasChanged = function(indx) {
         $log.log("ion-slide-box:slideHasChanged:"+indx);
-        
+        var slideEL = angular.element(document.querySelectorAll('.map--slider-location')[indx]);
         var slider_location = vm.locations_by_distance[indx];
         //set active slide
         vm.locations_by_distance.map(function(location) { location.isActive = false; return location;});
@@ -412,7 +433,9 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
         _showRouteTo(slider_location);
         _fitInMapView(slider_location);
-        vm.slider = {
+
+        // add new vaues to slider model
+        angular.extend(vm.slider,{
           shown:    true,
           isActive: false,
           meta:     {
@@ -420,7 +443,11 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
             travelTime:   slider_location.travelTime,
             neighborhood: slider_location.neighborhood
           }
-        };
+        });
+        
+        
+        _setupSlideDrag('down', indx);
+        _setupSlideDrag('up', indx);
 
       };//  $scope.slideHasChanged
 
@@ -474,7 +501,7 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
         
           vm.gmap.map.setOptions({styles: AppSettings.GMAP_DEFAULT.THEME.light});
 
-          vm.gmap.locationFocused = true;
+          
           vm.gmap.height = 350;
           vm.slider = {
             shown: true,
@@ -487,8 +514,11 @@ function MapCtrl($rootScope, $scope, $timeout, $log, $ionicLoading, AppSettings,
 
           $ionicSlideBoxDelegate.slide(_.indexOf(vm.locations_by_distance, marker));
 
+
           _showRouteTo(marker);
           _fitInMapView();
+          _setupSlideDrag('down', 0);
+          _setupSlideDrag('up', 0);
 
       });
     });// $scope.$on "marker:clicked"

@@ -1,0 +1,1411 @@
+[
+  {
+    "_id": "5709d94d85db6f029bff9e79",
+    "name": "Bob and Barbara's Lounge",
+    "catagorylevel1": "Drink",
+    "adress": "1509 South St Philadelphia PA 19146 United States",
+    "neighborhood": "South Street",
+    "lat": "39.9440555",
+    "long": "-75.1675493",
+    "distancefromlocation": 2901,
+    "travelTime": {
+      "text": "49 mins",
+      "value": 2967
+    },
+    "distance": {
+      "text": "2.4 mi",
+      "value": 3913
+    },
+    "googlePlaceId": "ChIJi995vjzGxokRIbxCa4BprWg",
+    "address_components": [
+      {
+        "long_name": "1509",
+        "short_name": "1509",
+        "types": [
+          "street_number"
+        ]
+      },
+      {
+        "long_name": "South Street",
+        "short_name": "South Street",
+        "types": [
+          "route"
+        ]
+      },
+      {
+        "long_name": "Center City",
+        "short_name": "Center City",
+        "types": [
+          "neighborhood",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia",
+        "short_name": "Philadelphia",
+        "types": [
+          "locality",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia County",
+        "short_name": "Philadelphia County",
+        "types": [
+          "administrative_area_level_2",
+          "political"
+        ]
+      },
+      {
+        "long_name": "PA",
+        "short_name": "PA",
+        "types": [
+          "administrative_area_level_1",
+          "political"
+        ]
+      },
+      {
+        "long_name": "",
+        "short_name": "US",
+        "types": [
+          "country",
+          "political"
+        ]
+      },
+      {
+        "long_name": "19146",
+        "short_name": "19146",
+        "types": [
+          "postal_code"
+        ]
+      },
+      {
+        "long_name": "1680",
+        "short_name": "1680",
+        "types": [
+          "postal_code_suffix"
+        ]
+      }
+    ],
+    "adr_address": "<span class=\"street-address\">1509 South Street</span>, <span class=\"locality\">Philadelphia</span>, <span class=\"region\">PA</span> <span class=\"postal-code\">19146-1680</span>",
+    "formatted_address": "1509 South Street, Philadelphia, PA 19146",
+    "formatted_phone_number": "(215) 545-4511",
+    "geometry": {
+      "location": {
+        "lat": 39.9440475,
+        "lng": -75.16754789999999
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+    "id": "9c0b84306b57bb1571943d9ca993aed38474582b",
+    "international_phone_number": "+1 215-545-4511",
+    "opening_hours": {
+      "open_now": false,
+      "periods": [
+        {
+          "close": {
+            "day": 1,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473055200000
+          },
+          "open": {
+            "day": 0,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1473015600000
+          }
+        },
+        {
+          "close": {
+            "day": 2,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473141600000
+          },
+          "open": {
+            "day": 1,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1473102000000
+          }
+        },
+        {
+          "close": {
+            "day": 3,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473228000000
+          },
+          "open": {
+            "day": 2,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1473188400000
+          }
+        },
+        {
+          "close": {
+            "day": 4,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472709600000
+          },
+          "open": {
+            "day": 3,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472670000000
+          }
+        },
+        {
+          "close": {
+            "day": 5,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472796000000
+          },
+          "open": {
+            "day": 4,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472756400000
+          }
+        },
+        {
+          "close": {
+            "day": 6,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472882400000
+          },
+          "open": {
+            "day": 5,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472842800000
+          }
+        },
+        {
+          "close": {
+            "day": 0,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472968800000
+          },
+          "open": {
+            "day": 6,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472929200000
+          }
+        }
+      ],
+      "weekday_text": [
+        "Monday: 3:00 PM – 2:00 AM",
+        "Tuesday: 3:00 PM – 2:00 AM",
+        "Wednesday: 3:00 PM – 2:00 AM",
+        "Thursday: 3:00 PM – 2:00 AM",
+        "Friday: 3:00 PM – 2:00 AM",
+        "Saturday: 3:00 PM – 2:00 AM",
+        "Sunday: 3:00 PM – 2:00 AM"
+      ]
+    },
+    "photos": [
+      {
+        "height": 2448,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/109288764654610552840/photos\">Mackenzie Canavarro</a>"
+        ],
+        "width": 3264
+      },
+      {
+        "height": 5312,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/117448114570107206075/photos\">Lisa Myers</a>"
+        ],
+        "width": 2988
+      },
+      {
+        "height": 3264,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/115390019946104710705/photos\">KBC criollos</a>"
+        ],
+        "width": 1836
+      },
+      {
+        "height": 2048,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/118241900451727165278/photos\">Jeff Washburn</a>"
+        ],
+        "width": 1152
+      },
+      {
+        "height": 2048,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/118241900451727165278/photos\">Jeff Washburn</a>"
+        ],
+        "width": 1152
+      }
+    ],
+    "place_id": "ChIJi995vjzGxokRIbxCa4BprWg",
+    "price_level": 2,
+    "rating": 4,
+    "reference": "CnRrAAAAmraQFDVxwgrKt2Tk_1YmMYorOwnhhtTBlEZyrxlBDaZUvICIXYLTqb4XxuOTrW41DdbCfkIILfebta1h3tnP_MBgo4m0sMZVJgbIHR2LyxmIAjTwdbeYyHA7kuTPQwaqVUgtS6Ybk6DGQ6z5AYWgZhIQvDkvJg7uiYP_qzcJZ_pyVRoUH-F-bhSoNgmFW3raeGCf5e_Wqoo",
+    "reviews": [
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Caleb Radens",
+        "author_url": "https://plus.google.com/116233799351028541162",
+        "language": "en",
+        "profile_photo_url": "//lh5.googleusercontent.com/-mZn1lYQCcP0/AAAAAAAAAAI/AAAAAAAAEGA/q9gFQSP47tI/photo.jpg",
+        "rating": 5,
+        "text": "One of my favorite places to pre-game a night. Get a couple of City-wide specials and you'll be happy for the rest of the night!",
+        "time": 1467120375
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Matt Ruby",
+        "author_url": "https://plus.google.com/113601610665507745553",
+        "language": "en",
+        "rating": 4,
+        "text": "Great dive bar with competitive drink specials.  Lots of PBR memorabilia and regular (often campy) live entertainment.",
+        "time": 1467234489
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Lily de la Torre",
+        "author_url": "https://plus.google.com/104302264587788132938",
+        "language": "en",
+        "profile_photo_url": "//lh3.googleusercontent.com/-gqSXHDv795Q/AAAAAAAAAAI/AAAAAAAAAFI/Uxqj8oJ_4Mw/photo.jpg",
+        "rating": 4,
+        "text": "This is a great local dive bar on South Street. The selection is pretty good, but it's cash only.  No food here. ",
+        "time": 1461441410
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Steve Telenko",
+        "author_url": "https://plus.google.com/115624688347399296354",
+        "language": "en",
+        "rating": 5,
+        "text": "Best plase in town to drink cheap buch is the best.",
+        "time": 1460853955
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Jared Jacobs",
+        "author_url": "https://plus.google.com/102767645449996368280",
+        "language": "en",
+        "profile_photo_url": "//lh6.googleusercontent.com/-mmGq2fyBxjw/AAAAAAAAAAI/AAAAAAAAAKs/CKpw2UYdz20/photo.jpg",
+        "rating": 5,
+        "text": "What a great dive. Cash only to. Live music is outstanding, bar has a classic feel. Home to the first city wide special beer and a bourbon for 5 bucks. No cover, cheap drinks. Can't go wrong.",
+        "time": 1456248841
+      }
+    ],
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "point_of_interest",
+      "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=7542800951191714849",
+    "utc_offset": -240,
+    "vicinity": "1509 South Street, Philadelphia",
+    "website": "http://www.bobandbarbaras.com/",
+    "html_attributions": []
+  },
+  {
+    "_id": "5709d94d85db6f029bff9e7a",
+    "name": "Garage",
+    "catagorylevel1": "Drink",
+    "adress": "E Passyunk Ave Philadelphia PA 19147 United States",
+    "neighborhood": "Passyunk Square",
+    "lat": "39.935438",
+    "long": "-75.1566705",
+    "distancefromlocation": 3260,
+    "travelTime": {
+      "text": "44 mins",
+      "value": 2612
+    },
+    "distance": {
+      "text": "2.2 mi",
+      "value": 3479
+    },
+    "googlePlaceId": "ChIJkXTjnx7GxokRgQA7mIv2L2g",
+    "address_components": [
+      {
+        "long_name": "1231-1233",
+        "short_name": "1231-1233",
+        "types": [
+          "street_number"
+        ]
+      },
+      {
+        "long_name": "East Passyunk Avenue",
+        "short_name": "E Passyunk Ave",
+        "types": [
+          "route"
+        ]
+      },
+      {
+        "long_name": "Passyunk Square",
+        "short_name": "Passyunk Square",
+        "types": [
+          "neighborhood",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia",
+        "short_name": "Philadelphia",
+        "types": [
+          "locality",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia County",
+        "short_name": "Philadelphia County",
+        "types": [
+          "administrative_area_level_2",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Pennsylvania",
+        "short_name": "PA",
+        "types": [
+          "administrative_area_level_1",
+          "political"
+        ]
+      },
+      {
+        "long_name": "United States",
+        "short_name": "US",
+        "types": [
+          "country",
+          "political"
+        ]
+      },
+      {
+        "long_name": "19147",
+        "short_name": "19147",
+        "types": [
+          "postal_code"
+        ]
+      }
+    ],
+    "adr_address": "<span class=\"street-address\">1231-1233 E Passyunk Ave</span>, <span class=\"locality\">Philadelphia</span>, <span class=\"region\">PA</span> <span class=\"postal-code\">19147</span>, <span class=\"country-name\">USA</span>",
+    "formatted_address": "1231-1233 E Passyunk Ave, Philadelphia, PA 19147, USA",
+    "formatted_phone_number": "(215) 278-2429",
+    "geometry": {
+      "location": {
+        "lat": 39.9334777,
+        "lng": -75.15873669999996
+      },
+      "viewport": {
+        "south": 39.93342275,
+        "west": -75.15902770000002,
+        "north": 39.93364254999999,
+        "east": -75.15863969999998
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+    "id": "4e2e54e22bd2533956581c720ab3291a7998c9bd",
+    "international_phone_number": "+1 215-278-2429",
+    "opening_hours": {
+      "open_now": false,
+      "periods": [
+        {
+          "close": {
+            "day": 1,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473055200000
+          },
+          "open": {
+            "day": 0,
+            "time": "1200",
+            "hours": 12,
+            "minutes": 0,
+            "nextDate": 1473004800000
+          }
+        },
+        {
+          "close": {
+            "day": 2,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473141600000
+          },
+          "open": {
+            "day": 1,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1473109200000
+          }
+        },
+        {
+          "close": {
+            "day": 3,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473228000000
+          },
+          "open": {
+            "day": 2,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1473195600000
+          }
+        },
+        {
+          "close": {
+            "day": 4,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472709600000
+          },
+          "open": {
+            "day": 3,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472677200000
+          }
+        },
+        {
+          "close": {
+            "day": 5,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472796000000
+          },
+          "open": {
+            "day": 4,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472763600000
+          }
+        },
+        {
+          "close": {
+            "day": 6,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472882400000
+          },
+          "open": {
+            "day": 5,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472850000000
+          }
+        },
+        {
+          "close": {
+            "day": 0,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472968800000
+          },
+          "open": {
+            "day": 6,
+            "time": "1200",
+            "hours": 12,
+            "minutes": 0,
+            "nextDate": 1472918400000
+          }
+        }
+      ],
+      "weekday_text": [
+        "Monday: 5:00 PM – 2:00 AM",
+        "Tuesday: 5:00 PM – 2:00 AM",
+        "Wednesday: 5:00 PM – 2:00 AM",
+        "Thursday: 5:00 PM – 2:00 AM",
+        "Friday: 5:00 PM – 2:00 AM",
+        "Saturday: 12:00 PM – 2:00 AM",
+        "Sunday: 12:00 PM – 2:00 AM"
+      ]
+    },
+    "photos": [
+      {
+        "height": 2322,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/118012748467279824986/photos\">MARIA ANGELES GARCIA IBAÑEZ</a>"
+        ],
+        "width": 4128
+      },
+      {
+        "height": 2340,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/102008987022329575937/photos\">Tj Seningen</a>"
+        ],
+        "width": 4160
+      },
+      {
+        "height": 2102,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/118151799496761308790/photos\">Eric Williams</a>"
+        ],
+        "width": 2448
+      },
+      {
+        "height": 2604,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/104204655941149837951/photos\">Seth Rivard</a>"
+        ],
+        "width": 1934
+      },
+      {
+        "height": 5312,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/107274785414897510428/photos\">jason kelso</a>"
+        ],
+        "width": 2988
+      },
+      {
+        "height": 3264,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/105154492685453503391/photos\">Michael Faia</a>"
+        ],
+        "width": 2448
+      },
+      {
+        "height": 3264,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/103765008452362570329/photos\">Matt Byrnes</a>"
+        ],
+        "width": 1836
+      },
+      {
+        "height": 3264,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/109249467420211536700/photos\">Justin Liles</a>"
+        ],
+        "width": 2448
+      }
+    ],
+    "place_id": "ChIJkXTjnx7GxokRgQA7mIv2L2g",
+    "price_level": 1,
+    "rating": 4.3,
+    "reference": "CmRZAAAANdVRnpKQYOA8832UVNoPWHa00szULl7l_AIDlPfeU-Nirw-PcsSlt33h8NEui9aeAipmZ57Vi3J5Y_JZF_rfAUigN7NPLI2mr-dzQv4IIWW5wbbgm37FzQQrquwo1wFEEhBH4z75YTqUol8QIqk-FcIVGhStrqqejIn0IypVniIsBFGIQ8Vo9Q",
+    "reviews": [
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Josiah Nedd",
+        "author_url": "https://plus.google.com/113359586281265080808",
+        "language": "en",
+        "profile_photo_url": "//lh4.googleusercontent.com/-e0YjVUdWwBo/AAAAAAAAAAI/AAAAAAAAAFk/lbVdbX29VT8/photo.jpg",
+        "rating": 4,
+        "text": "Nice bar with a food truck in it! Billiards table, Skeeball, and decent bartenders. Stumble to Pat's for a steak before/after.",
+        "time": 1470674346
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Frank Gioffre",
+        "author_url": "https://plus.google.com/113632090473894631930",
+        "language": "en",
+        "rating": 4,
+        "text": "Nice small bar with plenty of televisions to watch doing events. Indoor and outdoor seating.\nPrices are reasonable and the food is tasty.",
+        "time": 1466733444
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Paul Gwilym",
+        "author_url": "https://plus.google.com/103877905499017103428",
+        "language": "en",
+        "rating": 4,
+        "text": "Awesome beer collection....absolutely awesome.  Menu in a folder for the old land cruiser with c30 pages of beer.... Only beer, by brewer( at least 40) and style.......  Heaven.... Especially to wash down a Pats Philly Cheese Steak sandwich.  A bit off the beaten track but worth the experience. 😄👍👍😳",
+        "time": 1464990418
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "rocky romero",
+        "author_url": "https://plus.google.com/114790834993004567609",
+        "language": "en",
+        "rating": 5,
+        "text": "Love the canned beer selection. So many to choose from. Chill layed back place and it's located between pat's and genos cheese steaks. ",
+        "time": 1461191479
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Frank Iacovino",
+        "author_url": "https://plus.google.com/104246094571010268585",
+        "language": "en",
+        "profile_photo_url": "//lh6.googleusercontent.com/-Iaujs7_M1qw/AAAAAAAAAAI/AAAAAAAAGd4/8ukL843dP8U/photo.jpg",
+        "rating": 5,
+        "text": "Great beer selection paired with super knowledgeable bartenders. What's not to love? ",
+        "time": 1459735652
+      }
+    ],
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "point_of_interest",
+      "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=7507490183264796801",
+    "utc_offset": -240,
+    "vicinity": "1231-1233 East Passyunk Avenue, Philadelphia",
+    "website": "http://garagephilly.com/",
+    "html_attributions": []
+  },
+  {
+    "_id": "5709d94d85db6f029bff9e7d",
+    "name": "Hop Sing Laundromat",
+    "catagorylevel1": "Drink",
+    "adress": "1029 Race St, Philadelphia, PA 19107",
+    "neighborhood": "Olde City",
+    "lat": "39.9555162",
+    "long": "-75.1569554",
+    "distancefromlocation": 1366,
+    "travelTime": {
+      "text": "23 mins",
+      "value": 1405
+    },
+    "distance": {
+      "text": "1.1 mi",
+      "value": 1835
+    },
+    "googlePlaceId": "ChIJifv3WSrGxokR5zgPectkymI",
+    "address_components": [
+      {
+        "long_name": "1029",
+        "short_name": "1029",
+        "types": [
+          "street_number"
+        ]
+      },
+      {
+        "long_name": "Race Street",
+        "short_name": "Race St",
+        "types": [
+          "route"
+        ]
+      },
+      {
+        "long_name": "Center City",
+        "short_name": "Center City",
+        "types": [
+          "neighborhood",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia",
+        "short_name": "Philadelphia",
+        "types": [
+          "locality",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia County",
+        "short_name": "Philadelphia County",
+        "types": [
+          "administrative_area_level_2",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Pennsylvania",
+        "short_name": "PA",
+        "types": [
+          "administrative_area_level_1",
+          "political"
+        ]
+      },
+      {
+        "long_name": "United States",
+        "short_name": "US",
+        "types": [
+          "country",
+          "political"
+        ]
+      },
+      {
+        "long_name": "19107",
+        "short_name": "19107",
+        "types": [
+          "postal_code"
+        ]
+      }
+    ],
+    "adr_address": "<span class=\"street-address\">1029 Race St</span>, <span class=\"locality\">Philadelphia</span>, <span class=\"region\">PA</span> <span class=\"postal-code\">19107</span>, <span class=\"country-name\">USA</span>",
+    "formatted_address": "1029 Race St, Philadelphia, PA 19107, USA",
+    "geometry": {
+      "location": {
+        "lat": 39.95568169999999,
+        "lng": -75.15686579999999
+      },
+      "viewport": {
+        "south": 39.95535635,
+        "west": -75.15698325,
+        "north": 39.95579014999999,
+        "east": -75.15651345000003
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+    "id": "e9bfaf236e907f3f40ccb73e5a28c08b7b081460",
+    "opening_hours": {
+      "open_now": false,
+      "periods": [
+        {
+          "close": {
+            "day": 2,
+            "time": "2100",
+            "hours": 21,
+            "minutes": 0,
+            "nextDate": 1473210000000
+          },
+          "open": {
+            "day": 2,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1473195600000
+          }
+        },
+        {
+          "close": {
+            "day": 3,
+            "time": "2100",
+            "hours": 21,
+            "minutes": 0,
+            "nextDate": 1472691600000
+          },
+          "open": {
+            "day": 3,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472677200000
+          }
+        },
+        {
+          "close": {
+            "day": 4,
+            "time": "2100",
+            "hours": 21,
+            "minutes": 0,
+            "nextDate": 1472778000000
+          },
+          "open": {
+            "day": 4,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472763600000
+          }
+        },
+        {
+          "close": {
+            "day": 5,
+            "time": "2100",
+            "hours": 21,
+            "minutes": 0,
+            "nextDate": 1472864400000
+          },
+          "open": {
+            "day": 5,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472850000000
+          }
+        },
+        {
+          "close": {
+            "day": 6,
+            "time": "2100",
+            "hours": 21,
+            "minutes": 0,
+            "nextDate": 1472950800000
+          },
+          "open": {
+            "day": 6,
+            "time": "1700",
+            "hours": 17,
+            "minutes": 0,
+            "nextDate": 1472936400000
+          }
+        }
+      ],
+      "weekday_text": [
+        "Monday: Closed",
+        "Tuesday: 5:00 – 9:00 PM",
+        "Wednesday: 5:00 – 9:00 PM",
+        "Thursday: 5:00 – 9:00 PM",
+        "Friday: 5:00 – 9:00 PM",
+        "Saturday: 5:00 – 9:00 PM",
+        "Sunday: Closed"
+      ]
+    },
+    "photos": [
+      {
+        "height": 3264,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/101810068829626301924/photos\">Austin Graff</a>"
+        ],
+        "width": 2448
+      }
+    ],
+    "place_id": "ChIJifv3WSrGxokR5zgPectkymI",
+    "price_level": 2,
+    "rating": 4.1,
+    "reference": "CnRmAAAAQJSKXSxDQl-XXbWFi2DfMJNeTfPVO8-zoI9bk-JNk6fe4urn3hm1elcDTlo8vJH1QwszGpDqteqs4-ZAn29cXJOIaGu4ATaRQsQL4MmxWMtBilIW-9uh3lB3SlkfE8xXSbISVDMyh2rekkkdLPzerBIQ7mU4gbXTZPmnS8Tgp1oK6BoUEDtNWpNjt3Zc7aYo7z0PnuER4hM",
+    "reviews": [
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Rita M",
+        "author_url": "https://plus.google.com/112203294384501474372",
+        "language": "en",
+        "profile_photo_url": "//lh3.googleusercontent.com/-3FTluiV9fwk/AAAAAAAAAAI/AAAAAAAAMMU/tQCvMIofmqU/photo.jpg",
+        "rating": 4,
+        "text": "Wanting to maintain the prohibition experience, the doorman was incredibly cold and rude. There is a dress code, no shorts (for men) or trainers. Strict no cell phone policy. The venue itself is stunning. Lots of cool decor. The drinks are expensive. We were told it is a 2 drink minimum per person. Be warned they are not cheap. Would def return for a date or nice night and out.",
+        "time": 1471216388
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Nate Archibald",
+        "author_url": "https://plus.google.com/101066767095374750671",
+        "language": "en",
+        "profile_photo_url": "//lh4.googleusercontent.com/-r0cbpGy791o/AAAAAAAAAAI/AAAAAAAAXD8/YqDh9xU48kA/photo.jpg",
+        "rating": 5,
+        "text": "This place is wonderful.  A unique experience that transcends the typical.   I really enjoyed the handcrafted cocktails but my favorite part was not knowing what to expect.  A real pleasure and I will certainly return when I'm in Philly again.  Highly recommended.",
+        "time": 1466090795
+      },
+      {
+        "aspects": [
+          {
+            "rating": 0,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Julia Dennis",
+        "author_url": "https://plus.google.com/101209637943555603041",
+        "language": "en",
+        "rating": 1,
+        "text": "At Hop Sing tonight I observed the gentleman at the door let a couple inside that was wearing open toe sneakers and jeans but refuse service to my fiancé because his \"pants were too tight\". Absolutely ridiculous. We were well dressed, wore closed toe dress shoes, and were looking forward to having a few drinks at this elusive bar. The gentleman at the gate kept referring to my fiancé's pants as \"tights\" and insisted that men were not allowed to come in wearing tights (for clarification he was not; they were dress pants). I was, however, amazed to observe such a clearly regressive and anti-LGBT sentiment being echoed in the most progressive city I know. We went down the road to Charlie was a Sinner instead and had a wonderful time. We will not be back to Hop Sing",
+        "time": 1471700129
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Tajee B",
+        "author_url": "https://plus.google.com/107108631226876998316",
+        "language": "en",
+        "profile_photo_url": "//lh3.googleusercontent.com/-PFfxs9K4IbQ/AAAAAAAAAAI/AAAAAAAAAJ0/f_qpS7NYmd8/photo.jpg",
+        "rating": 5,
+        "text": "This is a very upscale speakeasy.  First of, it's just the door. No sign no indication that it's a bar. You ring the doorbell an Asian gentleman with really nice glasses comes out and ask you questions. He'll ask you questions like how do you know about this place , are you looking for someone, are you lost? If you're not dressed well, you will not get in.\n\nOnce you're in, it is a very seductive bar with nice cocktails. The cocktails are a little bit expensive but they're very tasty and well worth it. If you have some money to blow I suggest you go ahead get really nicely dressed and go to this bar.",
+        "time": 1470064658
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Evan T",
+        "author_url": "https://plus.google.com/102580237429212790863",
+        "language": "en",
+        "profile_photo_url": "//lh4.googleusercontent.com/-lQEe8Km3F9E/AAAAAAAAAAI/AAAAAAAALQA/4ETszY93oZg/photo.jpg",
+        "rating": 5,
+        "text": "Best drinks in the city without it being a typical bar. The place is modeled after a speakeasy so you won't be able to spot it from the street. Great atmosphere which is bolstered by strict rules against talking on cell phones, behavior (if you are too loud they will ask you to keep it down or tell you to leave) and a dress code. \n\n",
+        "time": 1465259585
+      }
+    ],
+    "scope": "GOOGLE",
+    "types": [
+      "laundry",
+      "point_of_interest",
+      "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=7118612986084669671",
+    "utc_offset": -240,
+    "vicinity": "1029 Race Street, Philadelphia",
+    "website": "http://www.hopsinglaundromat.com/",
+    "html_attributions": []
+  },
+  {
+    "_id": "5709d94d85db6f029bff9ea4",
+    "name": "Barcade",
+    "catagorylevel1": "Drink",
+    "adress": "1114 Frankford Ave, Philadelphia, PA 19125",
+    "neighborhood": "Fishtown",
+    "lat": "39.9674516",
+    "long": "-75.1346252",
+    "distancefromlocation": 966,
+    "travelTime": {
+      "text": "15 mins",
+      "value": 927
+    },
+    "distance": {
+      "text": "0.8 mi",
+      "value": 1299
+    },
+    "googlePlaceId": "ChIJ595L92jIxokRany45-G9urw",
+    "address_components": [
+      {
+        "long_name": "1114",
+        "short_name": "1114",
+        "types": [
+          "street_number"
+        ]
+      },
+      {
+        "long_name": "Frankford Avenue",
+        "short_name": "Frankford Ave",
+        "types": [
+          "route"
+        ]
+      },
+      {
+        "long_name": "Fishtown",
+        "short_name": "Fishtown",
+        "types": [
+          "neighborhood",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia",
+        "short_name": "Philadelphia",
+        "types": [
+          "locality",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Philadelphia County",
+        "short_name": "Philadelphia County",
+        "types": [
+          "administrative_area_level_2",
+          "political"
+        ]
+      },
+      {
+        "long_name": "Pennsylvania",
+        "short_name": "PA",
+        "types": [
+          "administrative_area_level_1",
+          "political"
+        ]
+      },
+      {
+        "long_name": "United States",
+        "short_name": "US",
+        "types": [
+          "country",
+          "political"
+        ]
+      },
+      {
+        "long_name": "19125",
+        "short_name": "19125",
+        "types": [
+          "postal_code"
+        ]
+      }
+    ],
+    "adr_address": "<span class=\"street-address\">1114 Frankford Ave</span>, <span class=\"locality\">Philadelphia</span>, <span class=\"region\">PA</span> <span class=\"postal-code\">19125</span>, <span class=\"country-name\">USA</span>",
+    "formatted_address": "1114 Frankford Ave, Philadelphia, PA 19125, USA",
+    "formatted_phone_number": "(215) 634-4400",
+    "geometry": {
+      "location": {
+        "lat": 39.9674476,
+        "lng": -75.13468849999998
+      },
+      "viewport": {
+        "south": 39.96744705,
+        "west": -75.13482175000001,
+        "north": 39.96744924999999,
+        "east": -75.13428875
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+    "id": "b39d0f7b68938fda1eb2d50dec36764a533c9ff6",
+    "international_phone_number": "+1 215-634-4400",
+    "opening_hours": {
+      "open_now": false,
+      "periods": [
+        {
+          "close": {
+            "day": 1,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473055200000
+          },
+          "open": {
+            "day": 0,
+            "time": "1200",
+            "hours": 12,
+            "minutes": 0,
+            "nextDate": 1473004800000
+          }
+        },
+        {
+          "close": {
+            "day": 2,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473141600000
+          },
+          "open": {
+            "day": 1,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1473102000000
+          }
+        },
+        {
+          "close": {
+            "day": 3,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1473228000000
+          },
+          "open": {
+            "day": 2,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1473188400000
+          }
+        },
+        {
+          "close": {
+            "day": 4,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472709600000
+          },
+          "open": {
+            "day": 3,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472670000000
+          }
+        },
+        {
+          "close": {
+            "day": 5,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472796000000
+          },
+          "open": {
+            "day": 4,
+            "time": "1500",
+            "hours": 15,
+            "minutes": 0,
+            "nextDate": 1472756400000
+          }
+        },
+        {
+          "close": {
+            "day": 6,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472882400000
+          },
+          "open": {
+            "day": 5,
+            "time": "1200",
+            "hours": 12,
+            "minutes": 0,
+            "nextDate": 1472832000000
+          }
+        },
+        {
+          "close": {
+            "day": 0,
+            "time": "0200",
+            "hours": 2,
+            "minutes": 0,
+            "nextDate": 1472968800000
+          },
+          "open": {
+            "day": 6,
+            "time": "1200",
+            "hours": 12,
+            "minutes": 0,
+            "nextDate": 1472918400000
+          }
+        }
+      ],
+      "weekday_text": [
+        "Monday: 3:00 PM – 2:00 AM",
+        "Tuesday: 3:00 PM – 2:00 AM",
+        "Wednesday: 3:00 PM – 2:00 AM",
+        "Thursday: 3:00 PM – 2:00 AM",
+        "Friday: 12:00 PM – 2:00 AM",
+        "Saturday: 12:00 PM – 2:00 AM",
+        "Sunday: 12:00 PM – 2:00 AM"
+      ]
+    },
+    "photos": [
+      {
+        "height": 864,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 1296
+      },
+      {
+        "height": 576,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 864
+      },
+      {
+        "height": 518,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 800
+      },
+      {
+        "height": 1944,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/112213799343173532608/photos\">Mike Stich</a>"
+        ],
+        "width": 2592
+      },
+      {
+        "height": 864,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 576
+      },
+      {
+        "height": 5344,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/104890601473266287086/photos\">Scott Cover</a>"
+        ],
+        "width": 3006
+      },
+      {
+        "height": 2432,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/118201447512597066585/photos\">Chris Waasdorp</a>"
+        ],
+        "width": 4320
+      },
+      {
+        "height": 864,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 1296
+      },
+      {
+        "height": 864,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100805785395923438332/photos\">Barcade</a>"
+        ],
+        "width": 1296
+      },
+      {
+        "height": 2988,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/115089017996120152352/photos\">Alexandra Mays</a>"
+        ],
+        "width": 5312
+      }
+    ],
+    "place_id": "ChIJ595L92jIxokRany45-G9urw",
+    "price_level": 1,
+    "rating": 4.3,
+    "reference": "CmRbAAAAeE8pHxgywPTnJTUaPLx85S2gm7NabH9O2ym_ZaOcSzo3y6jOtRQpxqqD1E8L-OB21IjFlHUSJYM2se44mXX4AakG4uO2ZH1oRSDMDP8PBwtFXUBvMkZ0zkfOXhlAt4avEhA5mx3RkcpcRzNouFnZA5i0GhRuCeakn_aFNXvg4b1pzs4wQQ9fQQ",
+    "reviews": [
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Derek Nordlund",
+        "author_url": "https://plus.google.com/111353973353891029231",
+        "language": "en",
+        "profile_photo_url": "//lh5.googleusercontent.com/-CWropOc0fRs/AAAAAAAAAAI/AAAAAAAAAB0/hnuhAkr67vA/photo.jpg",
+        "rating": 5,
+        "text": "Like a page straight from nostalgia, this place is everything a younger me wants but with great craft beer.  It's amazing old arcade games, all in working order, with a huge craft beer list that is constantly updated.  They go a bit beyond your typical bar food.  My last trip was $3 tacos, about 5 different types to select from including veggie and they have $1 tacos on, I believe, Mondays.  It can get a bit crowded on Friday and Saturday nights, so if you want to avoid the crowds and just play some awesome arcades and drink some beer then be prepared to clear out around 9ish.",
+        "time": 1470768338
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Joe Sgro",
+        "author_url": "https://plus.google.com/103262598098547007953",
+        "language": "en",
+        "profile_photo_url": "//lh4.googleusercontent.com/-mRWlkyHVD5c/AAAAAAAAAAI/AAAAAAAACww/cB736DDJxB0/photo.jpg",
+        "rating": 5,
+        "text": "The best game line-up of any of the Barcade locations in my opinion.  Beer selection is phenomenal as well.  The sandwiches are also really good, I was blown away the first time I ate here and haven't been let down on later visits.  Only issues are it gets super crowded at times, and it always seems like the game I am most excited to play (last time it was BurgerTime) is not working when I'm there.",
+        "time": 1468003754
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "George Wells",
+        "author_url": "https://plus.google.com/118042871570134135672",
+        "language": "en",
+        "profile_photo_url": "//lh5.googleusercontent.com/-jGLOnxayuWw/AAAAAAAAAAI/AAAAAAAAEiI/6xy6KI_r4zs/photo.jpg",
+        "rating": 4,
+        "text": "Excellent beer selection and fun retro games. Fun times are had in 3+ groups. Expect a crowd and wait for drink ordered and games on the weekends. Enjoyed the layout, size, and service of the Jersey City location better. ",
+        "time": 1465155326
+      },
+      {
+        "aspects": [
+          {
+            "rating": 2,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Michael N",
+        "author_url": "https://plus.google.com/116079407214484183950",
+        "language": "en",
+        "profile_photo_url": "//lh5.googleusercontent.com/-NSmu4_kmgkg/AAAAAAAAAAI/AAAAAAAABQg/y_KFTJqJWZQ/photo.jpg",
+        "rating": 4,
+        "text": "Cool concept. Great beer list. Excellent spot for a group hang. Nice little outdoor patio area. Food is decent too. ",
+        "time": 1466014033
+      },
+      {
+        "aspects": [
+          {
+            "rating": 3,
+            "type": "overall"
+          }
+        ],
+        "author_name": "Lily de la Torre",
+        "author_url": "https://plus.google.com/104302264587788132938",
+        "language": "en",
+        "profile_photo_url": "//lh3.googleusercontent.com/-gqSXHDv795Q/AAAAAAAAAAI/AAAAAAAAAFI/Uxqj8oJ_4Mw/photo.jpg",
+        "rating": 5,
+        "text": "There's a great beer list and vegan food options. Most games are 25 cents per play. When a game ate my coins, the manager was very quick to respond and gave me coins back. It's a great place to go alone or with friends. ",
+        "time": 1466872944
+      }
+    ],
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "point_of_interest",
+      "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=13599390802751552618",
+    "utc_offset": -240,
+    "vicinity": "1114 Frankford Avenue, Philadelphia",
+    "website": "http://www.barcadephiladelphia.com",
+    "html_attributions": []
+  }
+]

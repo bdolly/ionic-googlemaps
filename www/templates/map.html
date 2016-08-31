@@ -1,4 +1,4 @@
-<ion-view view-title="Map">
+<ion-view view-title="Map"  >
   <ion-content 
     scroll="false"
     ng-class="{'locations-loaded': Map.locations_by_distance.length > 0 }"
@@ -13,7 +13,8 @@
             <span ng-if="Map.distance_knob.value < 60">walk</span></h4>
     </nav>
 
-    <nav class="map--slider-metaNav"  ng-class="{'shown':Map.knob.value && !Map.slider.shown}">
+    <nav class="map--slider-metaNav"  
+         ng-class="{'shown':Map.knob.value && !Map.slider.shown}">
         <p class="map--slider-metaNav-city">{{currentPosition.city}}</p>
 
         <div class="map--slider-metaNav-controls">
@@ -40,20 +41,26 @@
         
     </nav>
 
+    
 
     <ion-slide-box 
-            class="map--slider" 
-            ng-class="{'is-shown':Map.slider.shown}"
-            show-pager="false"
-            on-slide-changed="slideHasChanged($index)">
+        class="map--slider" 
+        ng-class="{'is-shown':Map.slider.shown}"
+        show-pager="false"
+        on-slide-changed="slideHasChanged($index)"
+    >
 
 
         <ion-slide ng-repeat="location in Map.locations_by_distance" 
                    ng-class="{'active':location.isActive}"
         >
+            <content >
+            <div class="map--slider-location">
+                <img ng-show"Map.slider.detailView"
+                     ng-hide="!Map.slider.detailView"
+                     class="map--slider-location-img" 
+                     src="http://lorempixel.com/375/200/city/{{$index}}">
 
-            <div class="map--slider-location" >
-                <!-- <img class="map--slider-location-img" src="http://lorempixel.com/375/200/city/{{$index}}"> -->
                 <div class="item item-divider card--location-header">
                     <span class="location-name">{{location.name}}</span><br>
                     <address> <i class="ion-ios-location"></i>{{location.adress}}</address>
@@ -65,18 +72,18 @@
                                 "is-open": location.opening_hours.open_now,
                                 "is-closed": !location.opening_hours.open_now
                             }'> 
-                            <small>0 - 0</small>
+                            <small> {{location.todaysHours("open") }} - {{location.todaysHours("close")}}  </small>
                         </i>
 
                         <div class="location-expense">
-                            <span style="width:{{location.travelTime.value/100}}%"class="location-expense-indicator"> <i class="ion-cash"> </i></span>
+                             <i style="width:{{location.price_level*25}}%" class="ion-cash location-expense-indicator"> </i>
                             <i class="ion-cash location-expense-base"> </i>
                         </div>
                     </div>
 
                 </div>
             </div>
-
+        </content>
         </ion-slide>
     </ion-slide-box>
 
@@ -104,7 +111,7 @@
 
 
 
-    <div id="Map" style="height:{{Map.gmap.height}}px; width:100%;"  ng-class="{'location-focused':Map.gmap.locationFocused}"></div>
+    <div id="Map" style="height:{{Map.gmap.height}}px; width:100%;"  ></div>
 
 
     <nav class="map-discovery-nav" 
@@ -163,7 +170,7 @@
             </button>
 
             <ul class="map-discovery-location--contact">
-                <li><button ><i class="ion-ios-telephone"></i></button></li>
+                <li><button ><a href="tel:{{activeLocation.formatted_phone_number}}"><i class="ion-ios-telephone"></i></a></button></li>
                 <li><button ><i class="ion-person-add"></i></button></li>
                 <li><button ><i class="ion-pin"></i></button></li>
                 <li><button ><i class="ion-android-share-alt"></i></button></li>

@@ -6,7 +6,7 @@ var modelsModule = require('./_index.js');
 /**
  * @ngInject
  */
-modelsModule.factory('Location', function($rootScope, $log, $q) {
+modelsModule.factory('Location', function($rootScope, $log, $q, $filter) {
   $log = $log.getInstance('Location', true);
 
   function Location(LocationData){
@@ -18,28 +18,30 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
   Location.responseTransformer = function (responseData) {
     $log.log('resoponseTransformer for {length} items', responseData.locations);
     
-    if(responseData.locations){
+    // if(responseData.locations){
       
-      // transfrom the response data into an array of promises 
-      // to be fullfilled wiht async Loaction methods 
-      return responseData.locations.map(function(data) {
-          // create a new loaction 
-          // and perform sequential async functions
-          return new Location(data)
-                      .setTravelTime()
-                      .then(function(_l) {
-                          return _l.setGooglePlaceDetails();
-                      })
-                      .then(function(_LData) {
-                        var dfd = $q.defer(); 
-                        dfd.resolve(_LData);
-                        return dfd.promise;
-                      });
+    //   // transfrom the response data into an array of promises 
+    //   // to be fullfilled wiht async Loaction methods 
+    //   return responseData.locations.map(function(data) {
+    //       // create a new loaction 
+    //       // and perform sequential async functions
+    //       return new Location(data)
+    //                   .setTravelTime()
+    //                   .then(function(_l) {
+    //                       return _l.setGooglePlaceDetails();
+    //                   })
+    //                   .then(function(_LData) {
+    //                     var dfd = $q.defer(); 
+    //                     dfd.resolve(_LData);
+    //                     return dfd.promise;
+    //                   });
         
-      });
-    }
+    //   });
+    // }
 
-      // return responseData.map(Location.build);      
+    return responseData.map(function(location){
+      return new Location(location);
+    });      
   }
 
 
@@ -122,11 +124,20 @@ modelsModule.factory('Location', function($rootScope, $log, $q) {
   };
 
 
-  Location.build = function(lData) {
-    $log.log('build:{name}', lData);
-    
-    return new Location(lData);
+
+  Location.prototype.todaysHours = function(openClose) {
+    var d = new Date(),
+        weekday= d.getDay();
+
+      return $filter('date')(new Date(this.opening_hours.periods[weekday][openClose].nextDate), 'ha').replace('M','');
+
   }
+
+  // Location.build = function(lData) {
+  //   $log.log('build:{name}', lData);
+    
+  //   return new Location(lData);
+  // }
 
    
 

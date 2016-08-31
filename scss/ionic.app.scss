@@ -438,7 +438,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 			float:left;
 			background:rgba(#fff, 0.5);
 			padding:0 3px;
-			
+			text-transform: lowercase;
 			&.is-open{
 				color:green;
 				&:before{color:green;}
@@ -448,31 +448,29 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 				color:red;
 				&:before{color:red;}
 			}
-			
+
 			small{margin-top:-2px;}
 		}
 
 		.location-expense{
  			display: block;
  			float:left;
- 			width: 100px;
+ 			width: 16px;
  			position: relative;
  			margin:0 0 0 15px;
 
- 			i:before{
- 				color:#fff;
- 				background:green;
- 			}
+ 			i:before{ color:#fff; }
 
  			.location-expense-indicator{
  				overflow:hidden;
  				display: block;
+				&:before{background:green;}
  			}
  			.location-expense-base{
  				position: absolute;
  				top:0;
  				left:0;
- 				opacity: 0.125;
+ 				opacity: 0.5;
  			}
  		}
 

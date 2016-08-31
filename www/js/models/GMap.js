@@ -46,9 +46,9 @@ modelsModule.factory('GMap', function($log, $rootScope, $q, LocationsService, Ap
             map:       _markerSettings.map,
             title:     _markerSettings.title,
             opacity:   _markerSettings.opacity,
-            animation: google.maps.Animation.DROP
+            animation: google.maps.Animation.DROP,
+            icon:       _markerSettings.icon
       });
-
        
       return _marker;
     },
